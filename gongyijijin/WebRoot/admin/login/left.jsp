@@ -24,25 +24,29 @@
 		d = new dTree('d');
 		d.add(0,-1,'基金管理');
 		//用户管理
-		d.add(1,0,'用户管理','/gongyijijin/admin/login/welcome.jsp','','mainFrame');
+		d.add(1,0,'用户管理','/gongyijijin/admin/employee/changeEmployee.jsp','','mainFrame');
 			d.add(11,1,'增减用户','/gongyijijin/admin/employee/changeEmployee.jsp','','mainFrame');
 			d.add(12,1,'修改密码','/gongyijijin/admin/employee/changePassword.jsp','','mainFrame')
 		//理事会
-		d.add(2,0,'理事会','/gongyijijin/admin/login/welcome.jsp','','mainFrame');
-			d.add(21,2,'已审核','/gongyijijin/admin/orders/list.jsp','','mainFrame');
-			d.add(22,2,'未审核','/gongyijijin/admin/orders/list.jsp','','mainFrame');
+		d.add(2,0,'理事会','/gongyijijin/admin/council/council.jsp','','mainFrame');
+			d.add(21,2,'项目审核','/gongyijijin/admin/council/council_pro.jsp','','mainFrame');
+			d.add(22,2,'资金审核','/gongyijijin/admin/council/council_money.jsp','','mainFrame');
 		//审核委员会
-		d.add(3,0,'审核委员会','/gongyijijin/admin/login/welcome.jsp','','mainFrame');
-			d.add(31,3,'已审核','/gongyijijin/admin/check/check_finance.jsp','','mainFrame');
-			d.add(32,3,'未审核','/gongyijijin/admin/check/check_item.jsp','','mainFrame');
+		d.add(3,0,'审核委员会','/gongyijijin/admin/committee/moneycil.jsp','','mainFrame');
+			d.add(31,3,'资金审核','/gongyijijin/admin/committee/moneycil.jsp','','mainFrame');
+			d.add(32,3,'财务审核','/gongyijijin/admin/committee/council (2).jsp','','mainFrame');
 		//财务部
-		d.add(4,0,'财务部','/gongyijijin/admin/login/welcome.jsp','','mainFrame');
-			d.add(41,4,'做账','/gongyijijin/admin/orders/list.jsp','','mainFrame');
-			d.add(42,4,'审核','/gongyijijin/admin/orders/list.jsp','','mainFrame');
+		d.add(4,0,'财务部','/gongyijijin/admin/finance/donation.jsp','','mainFrame');
+			d.add(41,4,'做账','/gongyijijin/admin/finance/donation.jsp','','mainFrame');
+				d.add(411,41,'捐款做账','/gongyijijin/admin/finance/donation.jsp','','mainFrame');
+				d.add(412,41,'支出做账','/gongyijijin/admin/finance/don_spend.jsp','','mainFrame');
+			d.add(42,4,'审核','/gongyijijin/admin/finance/back_don.jsp','','mainFrame');
+				d.add(421,42,'捐款审核','/gongyijijin/admin/finance/back_don.jsp','','mainFrame');
+				d.add(422,42,'支出审核','/gongyijijin/admin/finance/back_don.jsp','','mainFrame');
 		//查询。
-		d.add(5,0,'查询','/gongyijijin/admin/login/welcome.jsp','','mainFrame');
-			d.add(51,5,'项目查询','/gongyijijin/admin/query/finance_query.jsp','','mainFrame');
-			d.add(52,5,'财务审核','/gongyijijin/admin/query/item_query.jsp','','mainFrame');
+		d.add(5,0,'查询','/gongyijijin/admin/query/QueryItem.jsp','','mainFrame');
+			d.add(51,5,'项目查询','/gongyijijin/admin/query/QueryItem.jsp','','mainFrame');
+		
 			
 		document.write(d);
 		//-->

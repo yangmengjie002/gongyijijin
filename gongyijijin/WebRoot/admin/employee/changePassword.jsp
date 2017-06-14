@@ -12,9 +12,16 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	<link href="${pageContext.request.contextPath}/admin/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	
+	<style type="text/css">
+    	body{
+    		background-color: #E6E6E6;
+    	}
+    </style>
   </head>
   
   <body>
+  	 <h3>修改密码</h3>
     <div id="me2" class="dd">
 				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 					<form class="form-horizontal">
