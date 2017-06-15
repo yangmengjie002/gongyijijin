@@ -5,7 +5,7 @@ import com.entity.Employee;
 
 public interface SelectDao {
 	/**
-	 * 查询管理员。
+	 * 
 	 */
 	
 	public Employee getEmp(Employee em);

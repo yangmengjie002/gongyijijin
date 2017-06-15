@@ -6,4 +6,10 @@
 			<result name="login">/admin/login/home.jsp</result>
 		</action>
 	</package>
+	<package name="yuxiaofei" extends="default">
+		<action name="eror_*" class="com.yuxiaofei.pro_apply.action.ProApplyAction" method="{1}">
+			<result name="error">/error.jsp</result>
+			<result name="right">/right.jsp</result>
+		</action>
+	</package>
 </struts>    

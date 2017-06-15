@@ -15,7 +15,7 @@ public class ConnPool {
 	 */
 	static{
 		bds.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		bds.setUrl("jdbc:sqlserver://localhost:1433;DatabaseName=non_profit_foundation");
+		bds.setUrl("jdbc:sqlserver://localhost:1433;DatabaseName=Foundation");
 		bds.setUsername("sa");
 		bds.setPassword("123456");
 	}
@@ -39,9 +39,9 @@ public class ConnPool {
 	 * 释放使用的连接。
 	 * @param con
 	 */
-	public void close(Connection con){
+	public void close(){
 		try {
-			con.close();
+			bds.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

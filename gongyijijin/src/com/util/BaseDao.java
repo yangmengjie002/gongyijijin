@@ -41,7 +41,7 @@ public class BaseDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			cp.close(con);
+			cp.close();
 		}
 		return flag;
 	}
@@ -63,7 +63,7 @@ public class BaseDao {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}finally{
-			cp.close(con);
+			cp.close();
 		}
 		return rs;
 	}
