@@ -15,7 +15,7 @@ public class ConnPool {
 	 */
 	static{
 		bds.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-		bds.setUrl("jdbc:sqlserver://localhost:1433;DatabaseName=non_profit_foundation");
+		bds.setUrl("jdbc:sqlserver://172.16.22.143:1433;DatabaseName=Foundation");
 		bds.setUsername("sa");
 		bds.setPassword("123456");
 	}

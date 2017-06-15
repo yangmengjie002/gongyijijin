@@ -3,6 +3,8 @@ package com.util;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -15,52 +17,25 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 public class BaseAction extends ActionSupport{
 	/**
-	 * 向request中放入键值对str=obj。
-	 * @param str
-	 * @param obj
-	 */
-	public static void setRequestAttribute(String str,Object obj){
-		ServletActionContext.getRequest().setAttribute(str, obj);
-	}
-	
-	/**
-	 * 从request中获取str的值。
-	 * @param str
+	 * 获取request
 	 * @return
 	 */
-	public static Object getRequestAttribute(String str){
-		Object attribute = ServletActionContext.getRequest().getAttribute(str);
-		return attribute;
+	public  HttpServletRequest getRequest(){
+		return ServletActionContext.getRequest();
 	}
 	/**
-	 * 把键值对str：obj放入session中。
-	 * @param str
-	 * @param obj
-	 */
-	public static void setSessionAttribute(String str,Object obj){
-		ServletActionContext.getRequest().getSession().setAttribute(str, obj);
-	}
-	
-	/**
-	 * 从session中获取str的值。
-	 * @param str
+	 * 获取response
 	 * @return
 	 */
-	public static Object getSessionAttribute(String str){
-		return ServletActionContext.getRequest().getSession().getAttribute(str);
+	public  HttpServletResponse getResponse(){
+		return ServletActionContext.getResponse();
 	}
-	
 	/**
-	 * 把str响应到前端。
-	 * @param str
+	 * 获取session
+	 * @return
 	 */
-	public void getWriter(String str){
-		try {
-			ServletActionContext.getResponse().getWriter().write(str);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public HttpSession getSession(){
+		return ServletActionContext.getRequest().getSession();
 	}
 	
 }
