@@ -39,9 +39,9 @@ public class ConnPool {
 	 * 释放使用的连接。
 	 * @param con
 	 */
-	public void close(){
+	public void close(Connection con){
 		try {
-			bds.close();
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
