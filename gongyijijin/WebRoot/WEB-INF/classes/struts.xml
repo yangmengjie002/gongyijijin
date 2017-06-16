@@ -21,8 +21,17 @@
 		<action name="emp_*" class="com.yangmengjie.action.EmpAction" method="{1}">
 			<result name="success">/admin/login/home.jsp</result>
 			<result name="entryBack_error">/entryBack.jsp</result>
+			<result name="addEmp">/admin/employee/changeEmployee.jsp</result>
 		</action>
 	</package>
+	
+	<package name="city_province" extends="struts-default">
+		<action name="get_*" class="com.yangmengjie.action.SelectCityAction" method="{1}">
+		
+		</action>
+	</package>
+	
+	<!-- yuxiaofei -->
 	<package name="yuxiaofei" extends="default">
 		<action name="MoneyApply_*" class="com.yuxiaofei.pro_apply.action.ProApplyAction" method="{1}">
 			<result name="error">/error.jsp</result>
