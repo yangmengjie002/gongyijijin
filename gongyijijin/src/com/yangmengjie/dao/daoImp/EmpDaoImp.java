@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.entity.Employee;
 import com.util.BaseDao;
@@ -16,7 +18,9 @@ public class EmpDaoImp implements EmpDao {
 	@Override
 	public int addEmployee(Employee em) {
 		// TODO Auto-generated method stub
-		return 0;
+		String sql = "insert into employee_information values(?,?,?,?,?,?,?,?,?)";
+		Object[] params={em.getEmp_name(),em.getEmp_phone(),em.getEmp_id_num(),em.getEmp_hire_date(),em.getEmp_add(),1,em.getEmp_user(),em.getEmp_pwd(),em.getEmp_leave_date()};
+		return BaseDao.executeUpdate(sql, params);
 	}
 
 	@Override
@@ -32,7 +36,6 @@ public class EmpDaoImp implements EmpDao {
 			System.out.println(logName+logPwd);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
-				System.out.println("aaaa");
 				em.setEmp_user(rs.getString("emp_user"));
 				em.setEmp_add(rs.getString("emp_add"));
 				em.setEmp_hire_date(rs.getString("emp_hire_date"));
@@ -52,6 +55,53 @@ public class EmpDaoImp implements EmpDao {
 			cp.close(con);
 		}
 		return em;
+	}
+
+	@Override
+	public List<Employee> selectEmployee(Integer id, String hireDate,
+			String username, Integer statusId) {
+		String sql = "select * from employee_information where 1=1";
+		System.out.println(id);
+		if(id!=null){
+			sql += " and emp_id="+id;
+		}
+		if(!"".equals(hireDate)){
+			sql += " and emp_hire_date > '" + hireDate+"'";
+		}
+		if(!"".equals(username) ){
+			sql += " and emp_user like "+"'%"+username+"%'";
+		}
+		if(statusId!=null){
+			sql += " and emp_status_id = "+statusId;
+		}
+		System.out.println(sql);
+		Connection con = cp.getConnection();
+		List<Employee> empList = new ArrayList<Employee>();
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				Employee em = new Employee();
+				em.setEmp_user(rs.getString("emp_user"));
+				em.setEmp_add(rs.getString("emp_add"));
+				em.setEmp_hire_date(rs.getString("emp_hire_date"));
+				em.setEmp_id(rs.getInt("emp_id"));
+				em.setEmp_id_num(rs.getString("emp_id_No"));
+				em.setEmp_leave_date(rs.getString("emp_leave_date"));
+				em.setEmp_phone(rs.getString("emp_phone"));
+				em.setEmp_pwd(rs.getString("emp_pwd"));
+				em.setEmp_status_id(rs.getString("emp_status_id"));
+				em.setEmp_name(rs.getString("emp_name"));
+				empList.add(em);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			cp.close(con);
+		}
+		
+		return empList;
 	}
 
 }

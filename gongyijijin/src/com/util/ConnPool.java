@@ -10,6 +10,11 @@ public class ConnPool {
 	 * 创建一个静态连接池
 	 */
 	private static BasicDataSource bds = new BasicDataSource();
+	
+	public static BasicDataSource getBds() {
+		return bds;
+	}
+
 	/**
 	 * 配置数据库连接
 	 */
