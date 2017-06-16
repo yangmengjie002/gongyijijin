@@ -32,6 +32,7 @@ public class FundApplyDaoImpl extends BaseDao {
 		Object[] pstm=new Object[]{pai.getPro_id(),pai.getUser_id(),pai.getMoney_app_num(),pai.getMoney_app_reason()};
 		return BaseDao.executeUpdate(sql, pstm);		
 	}
+
 	public  List<proNameFind> getInfo(ProApp pa){	
 		ResultSet rs=null;
 		List<proNameFind> lis=new ArrayList<proNameFind>();
@@ -39,7 +40,7 @@ public class FundApplyDaoImpl extends BaseDao {
 		Connection con=cp.getConnection();
 		try {	
 			PreparedStatement pstm=con.prepareStatement(sql);	
-			
+
 			pstm.setInt(1, pa.getUser_id());	
 			rs=pstm.executeQuery();			
 			
@@ -54,7 +55,7 @@ public class FundApplyDaoImpl extends BaseDao {
 			System.out.println(e.getMessage());
 		}
 		finally{
-			cp.close();
+			cp.close(con);
 		}
 		return lis;
 	} 
@@ -80,7 +81,7 @@ public class FundApplyDaoImpl extends BaseDao {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}finally{
-			cp.close();
+			cp.close(con);
 		}
 		return lis;		
 	}
@@ -88,15 +89,16 @@ public class FundApplyDaoImpl extends BaseDao {
 	public static void main(String[] args) {
 		ProApp pa=new ProApp();	
 		FundApplyDaoImpl ad=new FundApplyDaoImpl();	
-		pa.setUser_id(5);
+	
+		pa.setUser_id(3);
+		
 		List <proNameFind>lis=ad.getInfo(pa);
+		System.out.print(lis.size());
 		for (int i = 0; i < lis.size(); i++) {
+		
 			System.out.println(lis.get(i).getPro_name()+"::::"+lis.get(i).getPro_id());
 		}
-		List<DonTabInfo>lis1=ad.getMoney(pa);
-		for (int i = 0; i < lis1.size(); i++) {
-			System.out.println(lis1.get(i).getSum());
-		}
+		
 	}
 	
 }

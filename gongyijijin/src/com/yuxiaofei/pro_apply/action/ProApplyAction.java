@@ -1,13 +1,16 @@
 package com.yuxiaofei.pro_apply.action;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.util.BaseAction;
 import com.yuxiaofei.pro_apply.dao.FundApplyDaoImpl;
 import com.yuxiaofei.pro_apply.entity.BigProAppMoneyInfo;
 import com.yuxiaofei.pro_apply.entity.DonTabInfo;
@@ -24,7 +27,7 @@ import com.yuxiaofei.pro_apply.entity.proNameFind;
  * @ addCheck() 进行资金的判断
  */
 //@ParentPackage("struts-default")
-public class ProApplyAction extends ActionSupport implements ModelDriven<FundApplyInfo>{
+public class ProApplyAction extends BaseAction implements ModelDriven<FundApplyInfo>{
 	@Override
 	public FundApplyInfo getModel() {
 		// TODO Auto-generated method stub
@@ -41,16 +44,23 @@ public class ProApplyAction extends ActionSupport implements ModelDriven<FundApp
 	public String addPro(){
 		ProApp pa=new ProApp();	
 		FundApplyDaoImpl ad=new FundApplyDaoImpl();	
-		pa.setUser_id(5);//获取登陆者id
+		pa.setUser_id(3);//获取登陆者id
 		List <proNameFind>lis=ad.getInfo(pa);
-		HttpServletRequest request= ServletActionContext.getRequest();
-		/*for (int i = 0; i < lis.size(); i++) {
-			Integer pro_name=lis.get(i).getPro_id();
-			String pro_id=lis.get(i).getPro_name();
+		HttpServletResponse response = super.getResponse();
+		String str = "";
+		for (int i = 0; i < lis.size(); i++) {
+			str += lis.get(i).getPro_name()+";";
 			
-		}*/
-		request.setAttribute("lis", lis);
-		return "error";
+		}
+		System.out.println(lis);
+		try {
+			response.getWriter().print(str);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	public String checkMoney(){
 		ProApp pa=new ProApp();	

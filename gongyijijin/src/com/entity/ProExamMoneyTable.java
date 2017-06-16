@@ -1,10 +1,25 @@
 package com.entity;
 
 public class ProExamMoneyTable {
+	private Integer pro_exam_money_id;
+	
 	private Integer money_app_id;
 	private Integer emp_id;
 	private Integer exam_status_id;
 	private String pro_exam_money_info;
+	private String pro_exam_pro_time;
+	public Integer getPro_exam_money_id() {
+		return pro_exam_money_id;
+	}
+	public void setPro_exam_money_id(Integer pro_exam_money_id) {
+		this.pro_exam_money_id = pro_exam_money_id;
+	}
+	public String getPro_exam_pro_time() {
+		return pro_exam_pro_time;
+	}
+	public void setPro_exam_pro_time(String pro_exam_pro_time) {
+		this.pro_exam_pro_time = pro_exam_pro_time;
+	}
 	public Integer getMoney_app_id() {
 		return money_app_id;
 	}
