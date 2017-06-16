@@ -49,7 +49,7 @@ public class EmpDaoImp implements EmpDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
-			cp.close(con);
+			cp.close();
 		}
 		return em;
 	}
