@@ -181,23 +181,23 @@
 				| </span>
 
 		</div>
-		<form action="emp_login.action" method="post">
+		<form action="${pageContext.request.contextPath}/admin/login/home.jsp" method="post">
 
 		<div id="d11" class="col-md-3">
 			<div id="d111">用户登录</div>
 			<div id="d113"></div>
 			<div id="d112">
-				<div id="d1111">${msg}
+				<div id="d1111">
 					<div id="mi"></div>
 					<div id="mi1">
-						<input type="text" name="em.emp_user" style="width:191px;height:40px;"
+						<input type="text" name="username" style="width:191px;height:40px;"
 							class="ui-input ui-input-normal" placeholder="username">
 					</div>
 				</div>
 				<div id="d1112">
 					<div id="suo"></div>
 					<div id="suo1">
-						<input type="password" name="em.emp_pwd" style="width:191px;height:40px;"
+						<input type="password" name="password" style="width:191px;height:40px;"
 							class="ui-input ui-input-normal" placeholder="password">
 					</div>
 					
@@ -205,7 +205,7 @@
 				
 				<div id="suo2">
 					<input type="text" name="code" style="width:80px;height:40px;text-align:center;margin-bottom:20px" placeholder="验证码"/>
-					<img src="yanzhenServlet" onclick="show()" id="yanzhen"><a href="javascript:show()">看不清换一张</a>
+					<img src="yanzhenServlet" onclick="show()" id="yanzhen"><a href="javascript:show()">看不清换一张</a>${msg}
 				</div>
 				
 				

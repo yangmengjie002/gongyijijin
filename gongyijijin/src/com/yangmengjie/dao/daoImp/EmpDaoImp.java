@@ -5,7 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.entity.Employee;
 import com.util.BaseDao;
@@ -58,17 +62,17 @@ public class EmpDaoImp implements EmpDao {
 	}
 
 	@Override
-	public List<Employee> selectEmployee(Integer id, String hireDate,
+	public List<Employee> selectEmployee(int startIndex,int page,Integer id, Date hireDate,
 			String username, Integer statusId) {
-		String sql = "select * from employee_information where 1=1";
+		String sql = "select top "+page+ "* from employee_information where emp_id not in(select top "+startIndex+" emp_id from employee_information)";
 		System.out.println(id);
 		if(id!=null){
 			sql += " and emp_id="+id;
 		}
-		if(!"".equals(hireDate)){
+		if(hireDate!=null){
 			sql += " and emp_hire_date > '" + hireDate+"'";
 		}
-		if(!"".equals(username) ){
+		if(!"".equals(username)){
 			sql += " and emp_user like "+"'%"+username+"%'";
 		}
 		if(statusId!=null){
@@ -102,6 +106,34 @@ public class EmpDaoImp implements EmpDao {
 		}
 		
 		return empList;
+	}
+
+	@Override
+	public int selectEmpCount(Integer id, Date hireDate, String username,
+			Integer statusId) {
+		String sql = "select count(*) from employee_information where 1=1";
+		if(id!=null){
+			sql += " and emp_id="+id;
+		}
+		if(hireDate!=null){
+			sql += " and emp_hire_date > '" + hireDate+"'";
+		}
+		if(!"".equals(username) ){
+			sql += " and emp_user like "+"'%"+username+"%'";
+		}
+		if(statusId!=null){
+			sql += " and emp_status_id = "+statusId;
+		}
+		System.out.println(sql);
+		QueryRunner qr = new QueryRunner(ConnPool.getBds());
+		try {
+			int flag = (Integer) qr.query(sql,new ScalarHandler());
+			return flag;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 }

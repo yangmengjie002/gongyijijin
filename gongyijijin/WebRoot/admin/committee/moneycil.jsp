@@ -55,7 +55,7 @@ body {
 </head>
 
 <body>
-	<form action="first_check"method="post">
+	<form action="">
 		<div id="council">
 			<div class="container-fluid">
 				<div class="row">
@@ -172,7 +172,29 @@ body {
 							<!-- Button trigger modal -->
 							<button type="button" class="btn btn-success" data-toggle="modal"
 								data-target="#myModal1-2">同意</button> <!-- Modal -->
-							
+							<div class="modal fade" id="myModal1-2" tabindex="-1"
+								role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+											<h4 class="modal-title" id="myModalLabel">请输入同意理由(此理由将会提交到用户)</h4>
+										</div>
+										<div class="modal-body">
+											<textarea cols="68" rows="20"></textarea>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal">关闭</button>
+											<button type="button" class="btn btn-primary">确认</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
 							<button type="button" class="btn btn-danger" data-toggle="modal"
 								data-target="#myModal1-3">驳回</button> <!-- Modal -->
 							<div class="modal fade" id="myModal1-3" tabindex="-1"

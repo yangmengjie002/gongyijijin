@@ -1,8 +1,10 @@
 package com.yangmengjie.service.serviceImp;
 
+import java.util.Date;
 import java.util.List;
 
 import com.entity.Employee;
+import com.entity.EmployeeBean;
 import com.yangmengjie.dao.dao.EmpDao;
 import com.yangmengjie.dao.daoImp.EmpDaoImp;
 import com.yangmengjie.service.service.EmpService;
@@ -20,12 +22,24 @@ public class EmpServiceImp implements EmpService {
 		return ed.findEmployee(logName, logPwd);
 	}
 
+
+
 	@Override
-	public List<Employee> selectEmployee(Integer id, String hireDate,
-			String username, Integer statusId) {
-		List<Employee> empList = ed.selectEmployee(id, hireDate, username, statusId);
-		
-		return empList;
+	public EmployeeBean selectEmployee(Integer pageSize, Integer currentPage,
+			Integer id, Date hireDate, String username, Integer statusId) {
+			int page = pageSize==null?4:pageSize;
+			int curr = currentPage==null?1:currentPage;
+			int startIndex = (curr-1)*page;
+			List<Employee> empList = ed.selectEmployee(startIndex,page,id, hireDate, username, statusId);
+			int pageCount = ed.selectEmpCount(id, hireDate, username, statusId);
+			System.out.println(pageCount);
+			EmployeeBean eb = new EmployeeBean();
+			int allPage = (int) Math.ceil(pageCount*1.0/page);
+			eb.setAllPage(allPage);
+			eb.setCurrentPage(curr);
+			eb.setPageSize(page);
+			eb.setList(empList);
+		return eb;
 	}
 
 	

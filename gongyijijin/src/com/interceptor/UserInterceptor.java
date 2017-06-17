@@ -13,8 +13,14 @@ public class UserInterceptor extends MethodFilterInterceptor{
 
 	@Override
 	protected String doIntercept(ActionInvocation arg0) throws Exception {
-		
-		return arg0.invoke();
+		String  code = (String) BaseAction.getSessionAttribute("code");
+		HttpServletRequest request = ServletActionContext.getRequest();
+		HttpServletResponse response = ServletActionContext.getResponse();
+		String code1 = request.getParameter("code");
+		if(!code.equalsIgnoreCase(code1)){
+			
+		}
+		return null;
 	}
 
 }

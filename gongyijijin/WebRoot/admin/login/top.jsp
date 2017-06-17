@@ -104,7 +104,7 @@ TH {
 									</td>
 									<td width="155" valign="bottom"
 										background="${pageContext.request.contextPath}/admin/images/mis_05b.jpg">
-										<font color="blue">${role }<a href="javascript:void(0)"
+										<font color="blue"><a href="javascript:void(0)"
 											onclick="exitSys()">退出系统</a> </font></td>
 									<td width="10" align="right"
 										background="${pageContext.request.contextPath}/admin/images/mis_05b.jpg">
