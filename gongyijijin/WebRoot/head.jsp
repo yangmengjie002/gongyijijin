@@ -100,7 +100,7 @@ body {
 								</li>
 								<li><a href="moneyApply.jsp">申请资金</a>
 								</li>
-								<li><a href="authentication.jsp">申请项目</a>
+								<li><a href="proApply.jsp">申请项目</a>
 								</li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle"
 									data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -125,7 +125,7 @@ body {
 								<div class="form-group">
 									<input type="text" class="form-control" placeholder="搜索">
 								</div>
-								<button class="btn btn-info" type="submit">
+								<button class="btn btn-default btn-info" type="submit">
 									<span class="glyphicon glyphicon-search"></span>
 								</button>
 							</form>
@@ -158,6 +158,22 @@ body {
 		</div>
 	</div>
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

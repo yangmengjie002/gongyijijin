@@ -146,10 +146,10 @@ body {
 				<table class="table">
 					<tr>
 						<th>项目ID</th>
-						<th>申请人</th>
-						<th>项目名称</th>
+						<th>项目负责人</th>
+						<th>项目简介</th>
 						<th>项目金额</th>
-						<th>申请时间</th>
+						<th>批准时间</th>
 						<th>审核</th>
 						<th>备注</th>
 					</tr>

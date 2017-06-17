@@ -39,7 +39,7 @@ public class BaseDao {
 			ps.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}finally{
 			cp.close(con);
 		}

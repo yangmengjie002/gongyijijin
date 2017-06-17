@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
+	<!-- yangmengjie -->
 	<package name="default" extends="struts-default">
-<<<<<<< HEAD
 		<interceptors>
 			<interceptor name="empIntercepter" class="com.yangmengjie.interecptor.UserInterecptor">
 				<param name="excludeMethods">login</param>
@@ -29,21 +29,13 @@
 	<package name="city_province" extends="struts-default">
 		<action name="get_*" class="com.yangmengjie.action.SelectCityAction" method="{1}"></action>
 	</package>
-=======
-		<action name="login_*" class="com.action.UserAction" method="{1}">
-			<result name="login">/admin/login/home.jsp</result>
-		</action>
-	</package>
 	
->>>>>>> 712c1a0a5b929633c3629d3b36326b3b23e03260
-	
-	<!--王云明的配置文件  -->
-	<package name="wangyunming" extends="struts-default">
-		<action name="app_*" class="com.wangyunming.figh.action.ApplyingForAction" method="{1}">
-			<result name="applyingfor">/MyCenter.jsp</result>
-		</action>
-		<action name="wang_*" class="com.wangyunming.figh.action.Organization_applicationAction" method="{1}">
-			<result name="organizationfor">/proApply.jsp</result>
+	<!-- yuxiaofei -->
+	<package name="yuxiaofei" extends="default">
+		<action name="MoneyApply_*" class="com.yuxiaofei.pro_apply.action.ProApplyAction" method="{1}">
+			<result name="error">/error.jsp</result>
+			<result name="right">/right.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 	</package>
 </struts>    

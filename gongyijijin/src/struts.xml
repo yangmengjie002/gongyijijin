@@ -38,15 +38,4 @@
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 	</package>
-
-	
-	<!--王云明的配置文件  -->
-	<package name="wangyunming" extends="struts-default">
-		<action name="app_*" class="com.wangyunming.figh.action.ApplyingForAction" method="{1}">
-			<result name="applyingfor">/MyCenter.jsp</result>
-		</action>
-		<action name="wang_*" class="com.wangyunming.figh.action.Organization_applicationAction" method="{1}">
-			<result name="organizationfor">/proApply.jsp</result>
-		</action>
-	</package>
 </struts>    
