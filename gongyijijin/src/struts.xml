@@ -1,42 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<!-- yangmengjie -->
 	<package name="default" extends="struts-default">
-		<interceptors>
-			<interceptor name="empIntercepter" class="com.yangmengjie.interecptor.UserInterecptor">
-				<param name="excludeMethods">login</param>
-			</interceptor>
-			<interceptor-stack name="emploginStack">
-				<interceptor-ref name="defaultStack"></interceptor-ref>
-				<interceptor-ref name="empIntercepter"></interceptor-ref>
-			</interceptor-stack>
-		</interceptors>
-		<!-- 创建后台登录拦截器栈 -->
-		<default-interceptor-ref name="emploginStack"></default-interceptor-ref>
-		<!-- 全局配置error到error.jsp页面 -->
-		<global-results>
-			<result name="error">/error.jsp</result>
-		</global-results>
-		<action name="emp_*" class="com.yangmengjie.action.EmpAction" method="{1}">
-			<result name="success">/admin/login/home.jsp</result>
-			<result name="entryBack_error">/entryBack.jsp</result>
-			<result name="addEmp">/admin/employee/changeEmployee.jsp</result>
+		<action name="login_*" class="com.action.UserAction" method="{1}">
+			<result name="login">/admin/login/home.jsp</result>
 		</action>
 	</package>
 	
-	<package name="city_province" extends="struts-default">
-		<action name="get_*" class="com.yangmengjie.action.SelectCityAction" method="{1}">
-		
-		</action>
-	</package>
 	
-	<!-- yuxiaofei -->
-	<package name="yuxiaofei" extends="default">
-		<action name="MoneyApply_*" class="com.yuxiaofei.pro_apply.action.ProApplyAction" method="{1}">
-			<result name="error">/error.jsp</result>
-			<result name="right">/right.jsp</result>
-			<interceptor-ref name="defaultStack"></interceptor-ref>
+	<!--王云明的配置文件  -->
+	<package name="wangyunming" extends="struts-default">
+		<action name="app_*" class="com.wangyunming.figh.action.ApplyingForAction" method="{1}">
+			<result name="applyingfor">/MyCenter.jsp</result>
+		</action>
+		<action name="wang_*" class="com.wangyunming.figh.action.Organization_applicationAction" method="{1}">
+			<result name="organizationfor">/proApply.jsp</result>
 		</action>
 	</package>
 </struts>    
