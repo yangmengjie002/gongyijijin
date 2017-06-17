@@ -1,4 +1,3 @@
-#Fri Jun 16 08:30:12 CST 2017
 eclipse.preferences.version=1
-validator.Checked=WebRoot/js/jquery-2.1.3.min.js,WebRoot
+validator.Checked=WebRoot/js/jquery-2.1.3.min.js,WebRoot/admin/jquery/jquery-2.1.3.min.js,WebRoot
 validator.Unchecked=WebRoot/admin

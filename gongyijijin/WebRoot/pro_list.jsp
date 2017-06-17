@@ -88,9 +88,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="col-md-1"></div>
 			<div class="col-md-2">
 				<div class="col-xs-4">
-					<div class="input-group">
-						<span class="input-group-addon add-on" id="basic-addon1"><i class="icon-th">erere</i></span>
+					<div class="input-group ">
 						<input type="text" class="form-control date form_datetime" aria-describedby="basic-addon1">
+						<button type="button" class="btn btn-primary ">查询</button>
+						
+						<!-- <span class="input-group-addon add-on" id="basic-addon1"><i class="icon-th">查询</i></span> -->
 					</div>
 				</div> 
 				
@@ -127,10 +129,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  		</div>
 		  		<div class="col-md-3">
 		  			<table>
+		  				<tr><td>&nbsp;</td></tr>
 		  				<tr><td id="">项目状态：募捐中</td></tr>
-		  				<tr><td id="">以募： 1000元 89 人捐款</td></tr>
-		  				<tr><td id="">进度条</td></tr>
-		  				<tr><td id=""><input type="button" value="我要捐款"></td></tr>
+		  				<tr><td>&nbsp;</td></tr>
+		  				<tr><td id="">已募： ${list.don_id }元 &nbsp;&nbsp;已捐款：&nbsp;${list.don_money}次</td></tr>
+		  				<tr><td>&nbsp;</td></tr>
+		  			
+		  				<tr><td id=""><input type="button" value="我要捐款" onClick= "location.href='lejuan.jsp'"></td></tr>
 		  			</table>
 		  		
 		  		</div>

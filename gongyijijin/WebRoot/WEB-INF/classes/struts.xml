@@ -39,4 +39,6 @@
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 	</package>
+	
+	
 </struts>    

@@ -1,11 +1,17 @@
 package com.entity;
 
+/**
+ * @描述 用户实体类
+ * @作者
+ * @公司
+ * @时间 2017-6-17
+ */
 public class Consumer {
-	private Integer user_id;
-	private String user_name;
-	private String user_pwd;
-	private String user_phone;
-	private String user_email;
+	private Integer user_id;//用户ID
+	private String user_name;//用户名
+	private String user_pwd;//密码
+	private String user_phone;//电话
+	private String user_email;//邮箱
 	public Integer getUser_id() {
 		return user_id;
 	}
