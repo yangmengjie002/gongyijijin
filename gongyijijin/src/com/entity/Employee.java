@@ -8,20 +8,12 @@ public class Employee {
 	private int emp_id;//员工ID
 	private String emp_user;//员工用户名
 	private String emp_pwd;//员工 密码
-	private String emp_name;//员工真实姓名
 	private String emp_phone;//员工电话
 	private String emp_id_num;//员工身份证号。
 	private String emp_hire_date;//员工受雇日期
 	private String emp_leave_date;//员工离职日期
 	private String emp_add;//员工家庭住址
 	private String emp_status_id;//员工状态
-	
-	public String getEmp_name() {
-		return emp_name;
-	}
-	public void setEmp_name(String emp_name) {
-		this.emp_name = emp_name;
-	}
 	public int getEmp_id() {
 		return emp_id;
 	}
