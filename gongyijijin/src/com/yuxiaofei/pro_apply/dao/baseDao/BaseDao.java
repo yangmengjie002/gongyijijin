@@ -1,4 +1,4 @@
-package com.shidongfang.util;
+package com.yuxiaofei.pro_apply.dao.baseDao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,18 +10,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 /**
- * @描述 
- * @作者
- * @公司
- * @时间 2017-6-17
+ * @���� ������ݿ�Ļ���
+ * @����
+ * @��˾
+ * @ʱ�� 2017-6-8
  */
 public class BaseDao {
 	
 	static String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	static String url="jdbc:sqlserver://localhost:1433;databaseName=qy68";
+	static String url="jdbc:sqlserver://172.16.22.143:1433;DatabaseName=Foundation";
 	static String user="sa";
-	static String password="tiger";
+	static String password="123456";
 	PreparedStatement ps=null;
 	ResultSet rs=null;
 	//������
@@ -90,9 +91,9 @@ public class BaseDao {
 			}
 			int ret=ps.executeUpdate();
 			if(ret>0){
-				System.out.println("�����ɹ�");
+				System.out.println("操作成功");
 			}else{
-				System.out.println("����ʧ��");
+				System.out.println("操作失败");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

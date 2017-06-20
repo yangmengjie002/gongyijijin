@@ -11,7 +11,7 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.util.BaseAction;
-import com.yuxiaofei.pro_apply.dao.FundApplyDaoImpl;
+import com.yuxiaofei.pro_apply.dao.daoImpl.FundApplyDaoImpl;
 import com.yuxiaofei.pro_apply.entity.BigProAppMoneyInfo;
 import com.yuxiaofei.pro_apply.entity.DonTabInfo;
 import com.yuxiaofei.pro_apply.entity.FundApplyInfo;

@@ -1,9 +1,9 @@
 package com.yuxiaofei.pro_apply.entity;
 
 public class ProApp {
-	private Integer pro_id;
-	private String name;
-	private Integer user_id;
+	private Integer pro_id;//项目id
+	private String name;//名称
+	private Integer user_id;//使用者id
 	public Integer getUser_id() {
 		return user_id;
 	}

@@ -31,11 +31,23 @@
 	</package>
 	
 	<!-- yuxiaofei -->
-	<package name="yuxiaofei" extends="default">
+	<package name="yuxiaofei" extends="struts-default">
 		<action name="MoneyApply_*" class="com.yuxiaofei.pro_apply.action.ProApplyAction" method="{1}">
 			<result name="error">/error.jsp</result>
 			<result name="right">/right.jsp</result>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</action>
+	</package>
+	<package name="second_check_money" extends="struts-default">
+		<action name="secondMoney_*" class="com.yuxiaofei.pro_apply.action.SecondCheckAction" method="{1}">
+			<result name="error">/error.jsp</result>
+			<result name="right">/right.jsp</result>
+		</action>
+	</package>
+	<package name="first_check_money" extends="struts-default">
+		<action name="firstCheck_*" class="com.yuxiaofei.pro_apply.action.FirstCheckAction" method="{1}">
+			<result name="error">/error.jsp</result>
+			<result name="success">/right.jsp</result>
 		</action>
 	</package>
 </struts>    

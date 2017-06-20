@@ -1,4 +1,4 @@
-package com.yuxiaofei.pro_apply.dao;
+package com.yuxiaofei.pro_apply.dao.daoImpl;
 
 
 import java.sql.Connection;
@@ -24,15 +24,21 @@ import com.yuxiaofei.pro_apply.entity.proNameFind;
  * @ getUserDaoProName()
  * @需要获得 user_id
  */
-public class FundApplyDaoImpl extends BaseDao {
+public class FundApplyDaoImpl {
 	private ConnPool cp=new ConnPool();
-	
+	public  int addCheckProMon(BigProAppMoneyInfo pai){
+		String sql="insert into pro_exam_money_table(money_app_reason)  values(?) ";
+		Object[] pstm=new Object[]{ pai.getMoney_app_reason()};
+		return BaseDao.executeUpdate(sql,pstm);
+	}
 	public int addApplyFund(BigProAppMoneyInfo pai){
 		String sql="insert into fund_application values(?,?,?,?)";	
 		Object[] pstm=new Object[]{pai.getPro_id(),pai.getUser_id(),pai.getMoney_app_num(),pai.getMoney_app_reason()};
 		return BaseDao.executeUpdate(sql, pstm);		
 	}
 
+		
+	
 	public  List<proNameFind> getInfo(ProApp pa){	
 		ResultSet rs=null;
 		List<proNameFind> lis=new ArrayList<proNameFind>();
