@@ -31,4 +31,9 @@ public interface FunctionDao {
 	 * @return
 	 */
 	public int insertRole_FunByRoleName(int roleId,Object[] params);
+	/**
+	 * 查询出所有的权限。
+	 * @return
+	 */
+	public List<FunctionEntity> selectAllFunction();
 }

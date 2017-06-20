@@ -19,13 +19,22 @@ public interface RoleDao {
 	 * @param emp_id
 	 * @return
 	 */
-	public RoleEntity selectRoleById(int emp_id);
+	public List<RoleEntity> selectRoleById(int emp_id);
+	
 	/**
-	 * 增加新的角色。
-	 * @param roleName
+	 * 根据员工id删除角色。
+	 * @param id
 	 * @return
 	 */
-	public int addRole(String roleName);
+	public int deleRole(int id);
+	
+	/**
+	 * 根据员工编号给员工添加角色。
+	 * @param id
+	 * @param roleid
+	 * @return
+	 */
+	public int addRole(int id,int roleid);
 	
 	
 }

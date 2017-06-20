@@ -25,13 +25,13 @@ body {
 <script type="text/javascript">
 	function deleteUser(id) {
 		if (confirm("确认删除吗？")) {
-			alert(id);
+			location.href="/gongyijijin/role_allRole.action?id="+id;
 		}
 		
 	}
 	
 	function motifyUser(id){
-		alert(id);
+		location.href="/gongyijijin/role_allRole.action?id="+id;
 	}
 	
 	
@@ -142,12 +142,7 @@ body {
 				}
 			});
 		});
-	} 
-	
-	
-	
-	
-	
+	} 	
 </script>
 </head>
 
@@ -206,7 +201,7 @@ body {
 							<h4 class="modal-title" id="myModalLabel">添加用户</h4>
 							${msg}
 						</div>
-						
+
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-1"></div>
@@ -214,38 +209,31 @@ body {
 									<table class="table">
 										<tr>
 											<td>用户名</td>
-											<td><input type="text" name="em.emp_user" />
-											</td>
+											<td><input type="text" name="em.emp_user" /></td>
 										</tr>
 										<tr>
 											<td>密码</td>
-											<td><input type="password" name="em.emp_pwd" />
-											</td>
+											<td><input type="password" name="em.emp_pwd" /></td>
 										</tr>
 										<tr>
 											<td>真实姓名</td>
-											<td><input type="text" name="em.emp_name" />
-											</td>
+											<td><input type="text" name="em.emp_name" /></td>
 										</tr>
 										<tr>
 											<td>身份证号</td>
-											<td><input type="text" name="em.emp_id_num" />
-											</td>
+											<td><input type="text" name="em.emp_id_num" /></td>
 										</tr>
 										<tr>
 											<td>联系电话</td>
-											<td><input type="text" name="em.emp_phone" />
-											</td>
+											<td><input type="text" name="em.emp_phone" /></td>
 										</tr>
 										<tr>
 											<td>受雇日期</td>
-											<td><input type="text" name="em.emp_hire_date" />
-											</td>
+											<td><input type="text" name="em.emp_hire_date" /></td>
 										</tr>
 										<tr>
 											<td>家庭住址</td>
-											<td><input type="text" name="em.emp_add" />
-											</td>
+											<td><input type="text" name="em.emp_add" /></td>
 										</tr>
 									</table>
 
@@ -282,45 +270,50 @@ body {
 			<tbody id="tbody">
 				<c:forEach items="${eb.list}" var="employee">
 					<tr>
-						<td><input type="checkbox" name="employee" />
-						</td>
+						<td><input type="checkbox" name="employee" /></td>
 						<td>${employee.emp_id}</td>
 						<td>${employee.emp_user}</td>
 						<td>${employee.emp_name}</td>
 						<td>${employee.emp_phone}</td>
 						<td>${employee.emp_hire_date}</td>
-						<td id="state1">${employee.emp_status_id}</td>
-					
+						<td>
+							<c:if test="${employee.emp_status_id==1}">
+							在职
+							</c:if> <c:if test="${employee.emp_status_id==2 }">
+							离职
+							</c:if>
+						</td>
+
 						<td>
 							<button class="btn btn-danger btn-xs"
-								onclick="deleteUser(${employee.emp_id})">修改</button>
+								onclick="motifyUser(${employee.emp_id})">修改</button>
 							<button class="btn btn-danger btn-xs"
-								onclick="motifyUser(${employee.emp_id})">删除</button></td>
+								onclick="deleteUser(${employee.emp_id})">删除</button>
+							
+						</td>
 					</tr>
 				</c:forEach>
-
-				<tbody>
-			
+			<tbody>
 		</table>
-			<a id="down">上一页</a><span id="up_down">第${eb.currentPage}页/共${eb.allPage}页</span><a
+		<a id="down">上一页</a><span id="up_down">第${eb.currentPage}页/共${eb.allPage}页</span><a
 			id='up'>下一页</a>
 
-		</div>
+	</div>
 
-		<script type="text/javascript"
+	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/admin/jquery/jquery-2.1.3.min.js">
-</script>
-				<script type="text/javascript"
-					src="${pageContext.request.contextPath}/admin/jquery/bootstrap.min.js"></script>
-		<script type="text/javascript"
-					src="${pageContext.request.contextPath}/admin/js/bootstrap-datetimepicker.js"
-					charset="UTF-8"></script>
-		<script type="text/javascript"
-					src="${pageContext.request.contextPath}/admin/js/bootstrap-datetimepicker.fr.js"
-					charset="UTF-8"></script>
-		<script type="text/javascript"
-					src="${pageContext.request.contextPath}/admin/js/bootstrap-datetimepicker.zh-CN.js"
-					charset="UTF-8"></script>
+	</script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/admin/jquery/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/admin/js/bootstrap-datetimepicker.js"
+		charset="UTF-8"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/admin/js/bootstrap-datetimepicker.fr.js"
+		charset="UTF-8"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/admin/js/bootstrap-datetimepicker.zh-CN.js"
+		charset="UTF-8"></script>
 	<script type="text/javascript">
 		$(".form_datetime").datetimepicker({
 			language: 'zh-CN',
@@ -331,7 +324,7 @@ body {
 			minuteStep: 10
 		})
 		
-	</script>       
+	</script>
 
-			</body>
+</body>
 </html>

@@ -2,6 +2,7 @@ package com.filter;
 
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -12,6 +13,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.entity.FunctionEntity;
 import com.util.BaseDao;
 
 public class UserFilter implements Filter{
@@ -19,7 +21,7 @@ public class UserFilter implements Filter{
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -30,26 +32,51 @@ public class UserFilter implements Filter{
 		HttpServletResponse resp = (HttpServletResponse) response;
 		resp.setContentType("text/html;charset=utf-8");
 		//过滤
-		String code = (String) req.getSession().getAttribute("code");
-		String code1 = req.getParameter("code");
-		String name= req.getParameter("username");
-		System.out.println(code+";"+code1+":"+name);
-	
-		System.out.println("mmmmmm");
-		if(!code.equalsIgnoreCase(code1)){
-			
-			resp.setHeader("refresh", "1s;url="+req.getContextPath()+"/entryBack.jsp");
+		List funList = (List) req.getSession().getAttribute("funList");
+		List<FunctionEntity> allList = (List<FunctionEntity>) req.getSession().getAttribute("allList");
+		
+		for(int i=0;i<funList.size();i++){
+			List<FunctionEntity> list = (List<FunctionEntity>) funList.get(i);
+			for(int j=0;j<list.size();j++){
+				System.out.println(list.get(j).getUrl());
+			}
+		}
+		System.out.println("-------------------------------------------------------------");
+		for (int i = 0; i < allList.size(); i++) {
+			System.out.println(allList.get(i).getUrl());
+		}
+		System.out.println("-------------------------------------------------------------");
+		System.out.println(req.getRequestURI());
+		System.out.println("-------------------------------------------------------------");
+
+		int m=-1;
+		int n=-1;
+		String url = req.getRequestURI();
+		for(int i=0;i<funList.size();i++){
+			List<FunctionEntity> list = (List<FunctionEntity>) funList.get(i);
+			for(int j=0;j<list.size();j++){
+				if(url.equals(list.get(j).getUrl())){
+					m=1;
+				}
+			}
+		}
+		for(int i=0;i<allList.size();i++){
+			if(url.equals(allList.get(i).getUrl())){
+				n=1;
+			}
+		}
+		if(m<0 && n>0){
+
+			resp.getWriter().write("你权限不足，请返回。<a href='javascript:history.go(-1)'>返回</a>");
 			return;
 		}
-		chain.doFilter(req,resp);
-	
-		
+		chain.doFilter(req, resp);		
 	}
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }

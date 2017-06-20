@@ -2,6 +2,7 @@ package com.yangmengjie.action;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -16,8 +17,14 @@ import org.apache.struts2.ServletActionContext;
 
 
 import com.entity.Employee;
+import com.entity.FunctionEntity;
+import com.entity.RoleEntity;
 import com.util.BaseAction;
 import com.util.EmployeeBean;
+import com.yangmengjie.dao.dao.FunctionDao;
+import com.yangmengjie.dao.dao.RoleDao;
+import com.yangmengjie.dao.daoImp.FunctionDaoImpl;
+import com.yangmengjie.dao.daoImp.RoleDaoImpl;
 import com.yangmengjie.service.service.EmpService;
 import com.yangmengjie.service.serviceImp.EmpServiceImp;
 /**
@@ -45,6 +52,19 @@ public class EmpAction extends BaseAction{
 			if(emp!=null){
 				this.getSession().setAttribute("name", em.getEmp_user());
 				this.getSession().setAttribute("pwd", em.getEmp_pwd());
+				RoleDao rd = new RoleDaoImpl();
+				List<RoleEntity> re = rd.selectRoleById(emp.getEmp_id());
+				FunctionDao fd = new FunctionDaoImpl();
+				ArrayList list = new ArrayList(); 
+				for(int i=0;i<re.size();i++){
+					List<FunctionEntity> funList = fd.selectFunctionByRoleName(re.get(i).getRoleName());
+					list.add(funList);
+				}
+				
+				List<FunctionEntity> allList = fd.selectAllFunction();
+				this.getSession().setAttribute("funList", list);
+				this.getSession().setAttribute("allList", allList);
+				
 				return SUCCESS;
 			}else{
 				this.getRequest().setAttribute("msg", "用户名密码错误或用户不存在");
@@ -228,7 +248,6 @@ public class EmpAction extends BaseAction{
 		return "entryBack_error";
 	}
 	
-
 
 
 }
