@@ -18,43 +18,30 @@
 		<global-results>
 			<result name="error">/error.jsp</result>
 		</global-results>
+		<!-- 用户管理action -->
 		<action name="emp_*" class="com.yangmengjie.action.EmpAction" method="{1}">
 			<result name="success">/admin/login/home.jsp</result>
 			<result name="entryBack_error">/entryBack.jsp</result>
 			<result name="addEmp">/admin/employee/changeEmployee.jsp</result>
+			<result name="motifyEmPwd">/admin/employee/changePassword.jsp</result>
+		</action>
+		<!-- 角色管理action -->
+		<action name="role_*" class="com.yangmengjie.action.EmpRoleAction" method="{1}">
+			
 		</action>
 	</package>
 	
+	
 	<package name="city_province" extends="struts-default">
-		<action name="get_*" class="com.yangmengjie.action.SelectCityAction" method="{1}">
-		
-		</action>
+		<action name="get_*" class="com.yangmengjie.action.SelectCityAction" method="{1}"></action>
 	</package>
 	
 	<!-- yuxiaofei -->
-	<package name="yuxiaofei" extends="struts-default">
-		<action name="eror_*" class="com.yuxiaofei.pro_apply.action.ProApplyAction" method="{1}">
+	<package name="yuxiaofei" extends="default">
+		<action name="MoneyApply_*" class="com.yuxiaofei.pro_apply.action.ProApplyAction" method="{1}">
 			<result name="error">/error.jsp</result>
 			<result name="right">/right.jsp</result>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 	</package>
-	
-	<!-- jingbinbin前端注册 -->
-	
-	<package name="default1" extends="struts-default">
-	 <action name="register_*" class="com.jingbinbinzhu.RegisterAction" method="{1}">
-	   <result name="success">/login.jsp</result>
-	  
-	   <result name="error">/register.jsp</result>
-	  
-	   <result name="cuowu">error1.jsp</result>
-	 </action>
-	 
-	 <action name="qian_*" class="jingbinbindeng.qianloginAction" method="{1}">
-      <result name="qianlogin">/home.jsp</result>
-      <result name="dengcuo">/login.jsp</result>	 
-	 </action>
-	</package>
-	
-	
 </struts>    

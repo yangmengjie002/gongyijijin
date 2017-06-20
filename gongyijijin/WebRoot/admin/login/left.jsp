@@ -25,7 +25,7 @@
 		d.add(0,-1,'基金管理');
 		//用户管理
 		d.add(1,0,'用户管理','/gongyijijin/admin/employee/changeEmployee.jsp','','mainFrame');
-			d.add(11,1,'增减用户','/gongyijijin/admin/employee/changeEmployee.jsp','','mainFrame');
+			d.add(11,1,'增减用户','/gongyijijin/emp_selectEmp.action','','mainFrame');
 			d.add(12,1,'修改密码','/gongyijijin/admin/employee/changePassword.jsp','','mainFrame')
 		//理事会
 		d.add(2,0,'理事会','/gongyijijin/admin/council/council.jsp','','mainFrame');

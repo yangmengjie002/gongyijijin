@@ -5,12 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import jingbinbindeng.Dao.BaseDao;
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.entity.Employee;
-
+import com.util.BaseDao;
 import com.util.ConnPool;
 import com.yangmengjie.dao.dao.EmpDao;
 
@@ -20,22 +22,22 @@ public class EmpDaoImp implements EmpDao {
 	@Override
 	public int addEmployee(Employee em) {
 		// TODO Auto-generated method stub
-		String sql = "insert into employee_information values(?,?,?,?,?,?,?,?,?)";
-		Object[] params={em.getEmp_name(),em.getEmp_phone(),em.getEmp_id_num(),em.getEmp_hire_date(),em.getEmp_add(),1,em.getEmp_user(),em.getEmp_pwd(),em.getEmp_leave_date()};
-		return BaseDao.executeUpdate(sql, params);
+		int flag = -1;
+		String sql = "insert into employee_information(emp_name,emp_phone,emp_id_num,emp_hire_date,emp_add,emp_status_id,emp_user,emp_pwd) values(?,?,?,?,?,?,?,?)";
+		Object[] params={em.getEmp_name(),em.getEmp_phone(),em.getEmp_id_num(),em.getEmp_hire_date(),em.getEmp_add(),1,em.getEmp_user(),em.getEmp_pwd()};
+		flag = BaseDao.executeUpdate(sql, params);
+		return flag;
 	}
 
 	@Override
 	public Employee findEmployee(String logName, String logPwd) {
 		String sql = "select * from employee_information where emp_user=? and emp_pwd=?";
 		Object[] params={logName,logPwd};
-		
 		Connection con = cp.getConnection();
 		Employee em = new Employee();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			BaseDao.setParam(ps, params);
-			System.out.println(logName+logPwd);
+			BaseDao.setParams(ps, params);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				em.setEmp_user(rs.getString("emp_user"));
@@ -46,7 +48,7 @@ public class EmpDaoImp implements EmpDao {
 				em.setEmp_leave_date(rs.getString("emp_leave_date"));
 				em.setEmp_phone(rs.getString("emp_phone"));
 				em.setEmp_pwd(rs.getString("emp_pwd"));
-				em.setEmp_status_id(rs.getString("emp_status_id"));
+				em.setEmp_status_id(rs.getInt("emp_status_id"));
 				em.setEmp_name(rs.getString("emp_name"));
 				System.out.println(em.getEmp_add());
 			}
@@ -60,22 +62,21 @@ public class EmpDaoImp implements EmpDao {
 	}
 
 	@Override
-	public List<Employee> selectEmployee(Integer id, String hireDate,
-			String username, Integer statusId) {
-		String sql = "select * from employee_information where 1=1";
-		System.out.println(id);
+	public List<Employee> selectEmployee(int startIndex,int page, Integer id, String hireDate,String username,Integer statusId) {
+		String sql = "select top "+page+ "* from employee_information where emp_id not in(select top "+startIndex+" emp_id from employee_information)";
 		if(id!=null){
 			sql += " and emp_id="+id;
 		}
-		if(!"".equals(hireDate)){
+		if(hireDate!=null&&!"".equals(hireDate)){
 			sql += " and emp_hire_date > '" + hireDate+"'";
 		}
-		if(!"".equals(username) ){
+		if(!"".equals(username)&&username!=null){
 			sql += " and emp_user like "+"'%"+username+"%'";
 		}
 		if(statusId!=null){
 			sql += " and emp_status_id = "+statusId;
 		}
+		sql += "order by emp_hire_date desc";
 		System.out.println(sql);
 		Connection con = cp.getConnection();
 		List<Employee> empList = new ArrayList<Employee>();
@@ -92,18 +93,59 @@ public class EmpDaoImp implements EmpDao {
 				em.setEmp_leave_date(rs.getString("emp_leave_date"));
 				em.setEmp_phone(rs.getString("emp_phone"));
 				em.setEmp_pwd(rs.getString("emp_pwd"));
-				em.setEmp_status_id(rs.getString("emp_status_id"));
+				em.setEmp_status_id(rs.getInt("emp_status_id"));
 				em.setEmp_name(rs.getString("emp_name"));
 				empList.add(em);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally{
 			cp.close(con);
 		}
-		
+
 		return empList;
 	}
+
+	@Override
+	public int selectEmpCount(Integer id, String hireDate,String username,Integer statusId) {
+		String sql = "select count(*) from employee_information where 1=1";
+		if(id!=null){
+			sql += " and emp_id="+id;
+		}
+		if(hireDate!=null&&!"".equals(hireDate)){
+			sql += " and emp_hire_date > '" + hireDate+"'";
+		}
+		if(!"".equals(username)&&username!=null ){
+			sql += " and emp_user like "+"'%"+username+"%'";
+		}
+		if(statusId!=null){
+			sql += " and emp_status_id = "+statusId;
+		}
+		System.out.println(sql);
+		QueryRunner qr = new QueryRunner(ConnPool.getBds());
+		try {
+			int flag = (Integer) qr.query(sql,new ScalarHandler());
+			return flag;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	public int motifyEmpByName(String name, String newPassword1){
+		QueryRunner qr = new QueryRunner(ConnPool.getBds());
+		String sql = "update employee_information set emp_pwd = ? where emp_user = ?";
+
+		int flag=-1;
+		try {
+			flag = qr.update(sql,newPassword1,name);		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
+
 
 }

@@ -12,7 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import jingbinbindeng.Dao.BaseDao;
+import com.util.BaseDao;
 
 public class UserFilter implements Filter{
 
