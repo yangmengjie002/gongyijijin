@@ -6,6 +6,9 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.struts2.MYECLIPSE_STRUTS21_CORE"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="F:/log4/sqljdbc.jar"/>
+=======
+>>>>>>> 0590e1ffdcbe9007e4303b71d0ab8393fa8968ab
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

@@ -31,8 +31,7 @@ TH {
 	function exitSys() {
 		var flag = window.confirm("确认退出系统吗?");
 		if (flag) {
-			window.top.open('', '_parent', '');
-			window.top.close();
+			location.href="/gongyijijin/emp_empDistory.action";
 		}
 		//如果你使用的是firefox浏览器必须要做以下设置 
 		//1、在地址栏输入about:config然后回车，警告确认 
@@ -104,7 +103,7 @@ TH {
 									</td>
 									<td width="155" valign="bottom"
 										background="${pageContext.request.contextPath}/admin/images/mis_05b.jpg">
-										<font color="blue">${role }<a href="javascript:void(0)"
+										<font color="blue">${name}<a href="javascript:void(0)"
 											onclick="exitSys()">退出系统</a> </font></td>
 									<td width="10" align="right"
 										background="${pageContext.request.contextPath}/admin/images/mis_05b.jpg">

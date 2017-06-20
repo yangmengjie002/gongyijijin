@@ -1,59 +1,57 @@
 package com.shidongfang.dao.imp;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.entity.DonTable;
 
 import com.shidongfang.dao.DonTableDao;
-import com.util.BaseDao;
+import com.shidongfang.util.BaseDao;
 
-public class DonTableDaoImp implements DonTableDao{
-	
-	@Override
-	public int addAuth(DonTable dt) {
-		String sql="insert into don_table values(?,?,?,?,?,?)";
-		Object[] params=new Object[]{dt.getDon_id(),dt.getUser_money(),dt.getDon_exam_pro_id(),dt.getUser_oldmoney(),dt.getUser_id(),dt.getTime()};
-		return BaseDao.executeUpdate(sql, params);
+/**
+ * @描述 dao接口实现类
+ * @作者
+ * @公司
+ * @时间 2017-6-20
+ */
+public class DonTableDaoImp extends BaseDao implements DonTableDao{
+	/**
+	 * 增加数据
+	 * 向数据库添加一次捐款金额，与捐款时间
+	 * 
+	 * */
+	public boolean addDonTable(DonTable dt){
+		String sql="insert into don_table values(?,?)";
+		Object[] params={dt.getUser_money(),dt.getTime()};
+		return executeUpdate(sql, params);
 	}
-
+	/**
+	 * 删除数据
+	 * 
+	 * */
 	@Override
-	public int deleteAuth(DonTable dt) {
+	public void deleteDonTable(DonTable dt) {
 		// TODO Auto-generated method stub
-		return 0;
+		
 	}
-
+	/**
+	 * 修改数据
+	 * 
+	 * */
 	@Override
-	public int updateAuth(DonTable dt) {
+	public void updateDonTable(DonTable dt) {
 		// TODO Auto-generated method stub
-		return 0;
+		
 	}
-
+	/**
+	 * 查询数据
+	 * 
+	 * */
 	@Override
-	public List<DonTable> select() {
+	public List<Map<String, Object>> select() {
 		String sql="select * from don_table";
-		List<DonTable> list=new ArrayList<DonTable>();
-		ResultSet rs=null;
-		rs=BaseDao.executeQuery(sql, null);
-		try {
-			while(rs.next()){
-				DonTable dt=new DonTable();
-				dt.setDon_id(rs.getInt(1));
-				dt.setUser_money(rs.getFloat(2));
-				dt.setDon_exam_pro_id(rs.getInt(3));
-				dt.setUser_oldmoney(rs.getInt(5));
-				dt.setTime(rs.getString(6));
-				list.add(dt);
-			
-			}
-			//System.out.println("dt");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+		return executeQuery(sql, null);
 	}
-
+	
+	
 }

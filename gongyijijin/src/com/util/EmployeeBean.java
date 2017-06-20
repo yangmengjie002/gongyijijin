@@ -1,4 +1,4 @@
-package com.entity;
+package com.util;
 
 import java.util.List;
 
@@ -7,19 +7,9 @@ public class EmployeeBean {
 	private int currentPage;
 	private List list;
 	private int allPage;
-	private String str;
 	
-	public String getStr() {
-		if(getCurrentPage()<=1){setCurrentPage(1);}
-		if(getCurrentPage()>getAllPage()){setCurrentPage(getAllPage());}
-		StringBuffer sb = new StringBuffer();
-		sb.append("<a href='?currPage="+(getCurrentPage()-1)+"&pageSize="+getPageSize()+"'>上一页</a>");
-		sb.append("<a href='?currPage="+(getCurrentPage()+1)+"&pageSize="+getPageSize()+"'>下一页</a>");
-		return sb.toString();
-	}
-	public void setStr(String str) {
-		this.str = str;
-	}
+	
+
 	public int getPageSize() {
 		return pageSize;
 	}
@@ -45,5 +35,6 @@ public class EmployeeBean {
 	public void setAllPage(int allPage) {
 		this.allPage = allPage;
 	}
+	
 	
 }
