@@ -27,7 +27,8 @@
 		</action>
 		<!-- 角色管理action -->
 		<action name="role_*" class="com.yangmengjie.action.EmpRoleAction" method="{1}">
-			
+			<result name="success">/admin/login/rbac.jsp</result>
+			<result name="motifyRole1">/admin/employee/changeEmployee.jsp</result>
 		</action>
 	</package>
 	

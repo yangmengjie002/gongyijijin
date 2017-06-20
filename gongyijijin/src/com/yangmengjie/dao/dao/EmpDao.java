@@ -46,4 +46,17 @@ public interface EmpDao {
 	 * @return
 	 */
 	public int motifyEmpByName(String name, String newPassword1);
+	/**
+	 * 根据ID查找员工。
+	 * @param emp_id
+	 * @return
+	 */
+	public Employee getEmpById(int emp_id);
+	/**
+	 * 根据员工ID改变员工的状态。
+	 * @param emp_id
+	 * @param statusid
+	 * @return
+	 */
+	public int updateStatu(int emp_id,int statusid);
 }

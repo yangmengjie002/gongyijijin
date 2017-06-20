@@ -136,10 +136,52 @@ public class EmpDaoImp implements EmpDao {
 	public int motifyEmpByName(String name, String newPassword1){
 		QueryRunner qr = new QueryRunner(ConnPool.getBds());
 		String sql = "update employee_information set emp_pwd = ? where emp_user = ?";
-
 		int flag=-1;
 		try {
 			flag = qr.update(sql,newPassword1,name);		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return flag;
+	}
+
+	@Override
+	public Employee getEmpById(int emp_id) {
+		String sql = "select * from employee_information where emp_id="+emp_id;
+		Connection con = cp.getConnection();
+		Employee em = new Employee();
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				em.setEmp_user(rs.getString("emp_user"));
+				em.setEmp_add(rs.getString("emp_add"));
+				em.setEmp_hire_date(rs.getString("emp_hire_date"));
+				em.setEmp_id(rs.getInt("emp_id"));
+				em.setEmp_id_num(rs.getString("emp_id_No"));
+				em.setEmp_leave_date(rs.getString("emp_leave_date"));
+				em.setEmp_phone(rs.getString("emp_phone"));
+				em.setEmp_pwd(rs.getString("emp_pwd"));
+				em.setEmp_status_id(rs.getInt("emp_status_id"));
+				em.setEmp_name(rs.getString("emp_name"));
+				System.out.println(em.getEmp_add());
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			cp.close(con);
+		}
+		return em;
+	}
+
+	@Override
+	public int updateStatu(int emp_id, int statusid) {
+		QueryRunner qr = new QueryRunner(ConnPool.getBds());
+		String sql = "update employee_information set emp_status_id = ? where emp_id = ?";
+		int flag=-1;
+		try {
+			flag = qr.update(sql,statusid,emp_id);		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

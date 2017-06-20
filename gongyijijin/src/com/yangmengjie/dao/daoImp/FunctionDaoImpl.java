@@ -55,6 +55,21 @@ public class FunctionDaoImpl implements FunctionDao{
 		} 
 		return flag;
 	}
+
+	@Override
+	public List<FunctionEntity> selectAllFunction() {
+		QueryRunner qr = new QueryRunner(ConnPool.getBds());
+		String sql = "select * from functions";
+		try {
+			List<FunctionEntity> funList = qr.query(sql, new BeanListHandler<FunctionEntity>(FunctionEntity.class));
+			return funList;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 	
 
 }
