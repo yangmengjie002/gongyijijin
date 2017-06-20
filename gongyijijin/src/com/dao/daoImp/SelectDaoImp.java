@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import com.dao.dao.SelectDao;
 import com.entity.AdminUser;
 import com.entity.Employee;
-import com.util.BaseDao;
+import jingbinbindeng.Dao.BaseDao;
 
 public class SelectDaoImp implements SelectDao{
 

@@ -141,36 +141,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="col-md-10" id="yi_div">
 
 
-				<form action="http://www.baidu.com" method="post"
+				<form action="register_addregister.action" method="post"
 					onsubmit="return add()">
 					<div id="register_er_div">
 						<div class="input-group input-group-lg" id="username">
 							<span class="input-group-addon" id="sizing-addon1">用户名</span> <input
-								type="text" class="form-control user" placeholder="您的账户名和登录名"
+								type="text" class="form-control user" name="reg.user_name"placeholder="您的账户名和登录名"
 								aria-describedby="sizing-addon1">
 						</div>
 						<div id="username_div"></div>
 						<div class="input-group input-group-lg" id="password">
 							<span class="input-group-addon" id="sizing-addon1">设置密码</span> <input
-								type="password" class="form-control mima"
+								type="password" class="form-control mima" name="reg.user_pass"
 								placeholder="建议至少使用两种字符组合" aria-describedby="sizing-addon1">
 						</div>
 						<div id="password_div"></div>
 						<div class="input-group input-group-lg" id="password_to">
 							<span class="input-group-addon" id="sizing-addon1">确认密码</span> <input
-								type="password" class="form-control mimato"
+								type="password" class="form-control mimato" 
 								placeholder="请再次输入密码" aria-describedby="sizing-addon1">
 						</div>
 						<div id="password_to_div"></div>
 						<div class="input-group input-group-lg" id="phone">
 							<span class="input-group-addon" id="sizing-addon1">手机号</span> <input
-								type="text" class="form-control phone" maxlength='11'
+								type="text" class="form-control phone" maxlength='11' name="reg.user_phone"
 								placeholder="建议使用常用手机" aria-describedby="sizing-addon1">
 						</div>
 						<div id="phone_div"></div>
 						<div class="input-group input-group-lg" id="email">
 							<span class="input-group-addon" id="sizing-addon1">邮箱</span> <input
-								type="text" class="form-control email" placeholder="建议使用常用邮箱"
+								type="text" class="form-control email"  name="reg.user_emal"placeholder="建议使用常用邮箱"
 								aria-describedby="sizing-addon1">
 						</div>
 						<div id="email_div"></div>

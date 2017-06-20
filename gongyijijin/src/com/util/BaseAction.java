@@ -37,9 +37,5 @@ public class BaseAction extends ActionSupport{
 	public HttpSession getSession(){
 		return ServletActionContext.getRequest().getSession();
 	}
-	public static String getSessionAttribute(String string) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 }

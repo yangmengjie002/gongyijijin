@@ -5,7 +5,7 @@ package com.entity;
  *
  */
 public class Employee {
-	private Integer emp_id;//员工ID
+	private int emp_id;//员工ID
 	private String emp_user;//员工用户名
 	private String emp_pwd;//员工 密码
 	private String emp_name;//员工真实姓名
@@ -14,12 +14,18 @@ public class Employee {
 	private String emp_hire_date;//员工受雇日期
 	private String emp_leave_date;//员工离职日期
 	private String emp_add;//员工家庭住址
-	private Integer emp_status_id;//员工状态
+	private String emp_status_id;//员工状态
 	
-	public Integer getEmp_id() {
+	public String getEmp_name() {
+		return emp_name;
+	}
+	public void setEmp_name(String emp_name) {
+		this.emp_name = emp_name;
+	}
+	public int getEmp_id() {
 		return emp_id;
 	}
-	public void setEmp_id(Integer emp_id) {
+	public void setEmp_id(int emp_id) {
 		this.emp_id = emp_id;
 	}
 	public String getEmp_user() {
@@ -33,12 +39,6 @@ public class Employee {
 	}
 	public void setEmp_pwd(String emp_pwd) {
 		this.emp_pwd = emp_pwd;
-	}
-	public String getEmp_name() {
-		return emp_name;
-	}
-	public void setEmp_name(String emp_name) {
-		this.emp_name = emp_name;
 	}
 	public String getEmp_phone() {
 		return emp_phone;
@@ -70,11 +70,18 @@ public class Employee {
 	public void setEmp_add(String emp_add) {
 		this.emp_add = emp_add;
 	}
-	public Integer getEmp_status_id() {
+	public String getEmp_status_id() {
 		return emp_status_id;
 	}
-	public void setEmp_status_id(Integer emp_status_id) {
+	public void setEmp_status_id(String emp_status_id) {
 		this.emp_status_id = emp_status_id;
 	}
 	
+	
+	
+	
+	
+	
+
+
 }
