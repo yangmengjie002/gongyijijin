@@ -25,7 +25,7 @@
   
   <body>
   	 <h3>修改密码</h3>
-    <form action="emp_modifyEmPwd.action" method="post" onsubmit="return check()">
+    <form action="/gongyijijin/emp_motifyEmPwd.action" method="post">
 				<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 					<form class="form-horizontal">
 					  <div class="form-group">

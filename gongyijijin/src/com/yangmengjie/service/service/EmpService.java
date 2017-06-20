@@ -4,7 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import com.entity.Employee;
-import com.entity.EmployeeBean;
+import com.util.EmployeeBean;
+
 
 public interface EmpService {
 	/**
@@ -26,10 +27,17 @@ public interface EmpService {
 	 * @param id
 	 * @param id2 
 	 * @param currentPage 
-	 * @param hireDate
+	 * @param string
 	 * @param username
-	 * @param statusId
+	 * @param statuid
 	 * @return
 	 */
-	public EmployeeBean selectEmployee(Integer pageSize,Integer currentPage, Integer id, Date hireDate,String username,Integer statusId);
+	public EmployeeBean selectEmployee(Integer pageSize,Integer currentPage, Integer id, String hireDate,String username,Integer statuid);
+	/**
+	 * 修改用户密码。
+	 * @param role
+	 * @param newPassword1
+	 * @return
+	 */
+	public int motifyEmpByName(String name, String newPassword1);
 }

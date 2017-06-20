@@ -18,13 +18,19 @@
 		<global-results>
 			<result name="error">/error.jsp</result>
 		</global-results>
+		<!-- 用户管理action -->
 		<action name="emp_*" class="com.yangmengjie.action.EmpAction" method="{1}">
 			<result name="success">/admin/login/home.jsp</result>
 			<result name="entryBack_error">/entryBack.jsp</result>
 			<result name="addEmp">/admin/employee/changeEmployee.jsp</result>
-			<result name="motifyEmPwd">/amin/employee/changePassword.jsp</result>
+			<result name="motifyEmPwd">/admin/employee/changePassword.jsp</result>
+		</action>
+		<!-- 角色管理action -->
+		<action name="role_*" class="com.yangmengjie.action.EmpRoleAction" method="{1}">
+			
 		</action>
 	</package>
+	
 	
 	<package name="city_province" extends="struts-default">
 		<action name="get_*" class="com.yangmengjie.action.SelectCityAction" method="{1}"></action>
