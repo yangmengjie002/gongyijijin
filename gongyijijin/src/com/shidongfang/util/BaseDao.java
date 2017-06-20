@@ -10,32 +10,33 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 /**
- * @描述 
+ * @描述 basedao 增删改查工具类
  * @作者
  * @公司
- * @时间 2017-6-17
+ * @时间 2017-6-19
  */
 public class BaseDao {
 	
 	static String driver="com.microsoft.sqlserver.jdbc.SQLServerDriver";
-	static String url="jdbc:sqlserver://localhost:1433;databaseName=qy68";
+	static String url="jdbc:sqlserver://172.16.22.143:1433;databaseName=Foundation";
 	static String user="sa";
-	static String password="tiger";
+	static String password="123456";
 	PreparedStatement ps=null;
 	ResultSet rs=null;
-	//������
+	//加载驱动
 	static{
 		
 		try {
 			Class.forName(driver);
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
 	
-	//��ȡ��ݿ�����
+	//获取连接
 	 public static 	Connection getConnection() {
 		 Connection conn=null;
 		 try {
@@ -47,7 +48,7 @@ public class BaseDao {
 		 
 		 return conn;
 	}
-	//6:�ر���ݿ�����
+	//6:关闭连接
 	public static void closeConnection(ResultSet rs,PreparedStatement ps,Connection conn) {
 		if(rs!=null){
 			try {
@@ -62,7 +63,7 @@ public class BaseDao {
 
 	}
 		public PreparedStatement setParam(PreparedStatement ps,Object[] params) {
-			//ѭ�����ò���
+			//设置参数
 			if(params!=null){
 				for (int i = 0; i < params.length; i++) {
 					try {
@@ -79,13 +80,13 @@ public class BaseDao {
 	
 	
 	
-	//���� ɾ�� �޸�
-	public void executeUpdate(String sql, Object[] params ) {
+	//增删改
+	public boolean executeUpdate(String sql, Object[] params ) {
 		Connection conn=getConnection();
 		try {
 			ps=conn.prepareStatement(sql);
 			for (int i = 0; i < params.length; i++) {
-				//ѭ�����ò���
+				
 				ps.setObject(i+1, params[i]);
 			}
 			int ret=ps.executeUpdate();
@@ -100,11 +101,11 @@ public class BaseDao {
 		}finally{
 			closeConnection(null, ps, conn);
 		}
-		
+		return false;
 	}
 	
 	
-	//��ѯ
+	//查询
 	public List<Map<String,Object>> executeQuery(String sql,Object[] params) {
 		List<Map<String,Object>> objectList=new ArrayList<Map<String,Object>>();
 		Connection conn=getConnection();
