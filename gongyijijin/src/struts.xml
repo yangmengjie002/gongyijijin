@@ -18,20 +18,13 @@
 		<global-results>
 			<result name="error">/error.jsp</result>
 		</global-results>
-		<!-- 用户管理action -->
 		<action name="emp_*" class="com.yangmengjie.action.EmpAction" method="{1}">
 			<result name="success">/admin/login/home.jsp</result>
 			<result name="entryBack_error">/entryBack.jsp</result>
 			<result name="addEmp">/admin/employee/changeEmployee.jsp</result>
-			<result name="motifyEmPwd">/admin/employee/changePassword.jsp</result>
-		</action>
-		<!-- 角色管理action -->
-		<action name="role_*" class="com.yangmengjie.action.EmpRoleAction" method="{1}">
-			<result name="success">/admin/login/rbac.jsp</result>
-			<result name="motifyRole1">/admin/employee/changeEmployee.jsp</result>
+			<result name="motifyEmPwd">/amin/employee/changePassword.jsp</result>
 		</action>
 	</package>
-	
 	
 	<package name="city_province" extends="struts-default">
 		<action name="get_*" class="com.yangmengjie.action.SelectCityAction" method="{1}"></action>
@@ -45,7 +38,6 @@
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 		</action>
 	</package>
-<<<<<<< HEAD
 	<package name="second_check_money" extends="struts-default">
 		<action name="secondMoney_*" class="com.yuxiaofei.pro_apply.action.SecondCheckAction" method="{1}">
 			<result name="error">/error.jsp</result>
@@ -57,17 +49,5 @@
 			<result name="error">/error.jsp</result>
 			<result name="success">/right.jsp</result>
 		</action>
-=======
-	
-	
-	<!-- shidongfang -->
-	<package name="sdf" extends="struts-default" namespace="">
-		<action name="user_*" class="com.shidongfang.action.DonTableAction" method="{1}">
-			<result name="list" >/pro_list.jsp</result>
-			<!-- 重定向到某个Action -->
-			<result name="to_select" type="redirectAction">user_select.action</result>
-		</action>
-	
->>>>>>> 0590e1ffdcbe9007e4303b71d0ab8393fa8968ab
 	</package>
 </struts>    

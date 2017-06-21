@@ -4,8 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.entity.Employee;
-
-import com.util.EmployeeBean;
+import com.entity.EmployeeBean;
 import com.yangmengjie.dao.dao.EmpDao;
 import com.yangmengjie.dao.daoImp.EmpDaoImp;
 import com.yangmengjie.service.service.EmpService;
@@ -27,7 +26,7 @@ public class EmpServiceImp implements EmpService {
 
 	@Override
 	public EmployeeBean selectEmployee(Integer pageSize, Integer currentPage,
-			Integer id, String hireDate, String username, Integer statusId) {
+			Integer id, Date hireDate, String username, Integer statusId) {
 			int page = pageSize==null?4:pageSize;
 			int curr = currentPage==null?1:currentPage;
 			int startIndex = (curr-1)*page;
@@ -41,11 +40,6 @@ public class EmpServiceImp implements EmpService {
 			eb.setPageSize(page);
 			eb.setList(empList);
 		return eb;
-	}
-
-	@Override
-	public int motifyEmpByName(String name, String newPassword1) {
-		return ed.motifyEmpByName(name, newPassword1);
 	}
 
 	

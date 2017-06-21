@@ -20,7 +20,7 @@ public interface EmpDao {
 	 */
 	public Employee findEmployee(String logName, String logPwd);
 	/**
-	 * 
+	 * 通过条件查询员工集合。
 	 * @param id
 	 * @param id2 
 	 * @param page 
@@ -29,7 +29,7 @@ public interface EmpDao {
 	 * @param statusId
 	 * @return
 	 */
-	public List<Employee> selectEmployee(int startIndex,int page, Integer id, String hireDate,String username,Integer statusId);
+	public List<Employee> selectEmployee(int startIndex,int page, Integer id, Date hireDate,String username,Integer statusId);
 	/**
 	 * 查询符合条件的员工总条数。
 	 * @param id
@@ -38,25 +38,5 @@ public interface EmpDao {
 	 * @param statusId
 	 * @return
 	 */
-	public int selectEmpCount(Integer id, String hireDate,String username,Integer statusId);
-	/**
-	 * 修改用户密码。
-	 * @param name
-	 * @param newPassword1
-	 * @return
-	 */
-	public int motifyEmpByName(String name, String newPassword1);
-	/**
-	 * 根据ID查找员工。
-	 * @param emp_id
-	 * @return
-	 */
-	public Employee getEmpById(int emp_id);
-	/**
-	 * 根据员工ID改变员工的状态。
-	 * @param emp_id
-	 * @param statusid
-	 * @return
-	 */
-	public int updateStatu(int emp_id,int statusid);
+	public int selectEmpCount(Integer id, Date hireDate,String username,Integer statusId);
 }
