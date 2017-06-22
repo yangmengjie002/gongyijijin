@@ -95,18 +95,18 @@
 			
 		</div>
 
-
+		<form action="" method="post">
 			<div id="council_row" class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
 				<table class="table">
 					<tr>
 					<!-- <p class="text-center">字体居中</p> -->
-						<th>捐款次数</th>
+						<th>捐款序号</th>
 						<th>捐款金额</th>
 						<th>项目ID</th>
 						<th>此项目已捐金额</th>
 						<th>用户ID</th>
 						<th>捐款时间</th>
-						<th>所有项目总金额 </th>
+						
 					</tr>
 					<tr>
 						<td>1</td>
@@ -135,7 +135,7 @@
 						<td>100000</td>
 						<td>1011</td>
 						<td>2017-6-12</td>
-						<td>189245633.40</td>
+					
 						
 		
 					</tr>
@@ -165,12 +165,12 @@
 						<td>150000</td>
 						<td>1012</td>
 						<td>2017-6-13</td>
-						<td>189245633.40</td>
+						
 						
 					</tr>
 				</table>
 			</div>
-
+		</form>
 
 
 		</div>

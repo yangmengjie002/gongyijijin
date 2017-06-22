@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -107,10 +108,10 @@ background-image:url(500.jpg);
 packground-repeat:no-repeat;
 }
 </style>
-</head>
+<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script></head>
 
 <body>
-
+	
 
 	<div class="row" id="roww">
 
@@ -174,12 +175,16 @@ packground-repeat:no-repeat;
 				</div>
 				<hr>
 			</div>
-
+		
 			<div class="row">
 				<div class="col-md-4">
 					<img src="323.png" />
 				</div>
-				<div id="money" class="col-md-6">${dp2.user_oldmoney}元</div>
+				
+				<%-- <c:forEach items="" var="">  --%>
+					<div id="money" class="col-md-6">${don.user_oldmoney}元</div>
+				<%-- </c:forEach> --%>
+				
 			</div>
 			<div id="time">
 				<div id="time_one">&nbsp;时间</div>
@@ -190,40 +195,84 @@ packground-repeat:no-repeat;
 			<div id="money_sum" class="row">
 
 				<div id="money_sum_one">
-					&nbsp;&nbsp;&nbsp;&nbsp; <span>金额</span>&nbsp;&nbsp;&nbsp; <input
-						type="submit" value="50元" />&nbsp;&nbsp;&nbsp; <input
-						type="submit" value="100元" />&nbsp;&nbsp;&nbsp; <input
-						type="submit" value="200元" />
+					&nbsp;&nbsp;&nbsp;&nbsp; 
+					<span>金额</span>&nbsp;&nbsp;&nbsp; 
+					<input type="button" name="money" value="50元" />&nbsp;&nbsp;&nbsp; 
+					<input type="button" name="money" value="100元" />&nbsp;&nbsp;&nbsp; 
+					<input type="button" name="money"  value="200元" />
+					
+					确认捐款：<input style="width:80px" type="text" name="a" id="money" />
 				</div>
+				
 				<div class="row" id="money_sum_two">
 					<div class="col-lg-4">
 						<div class="input-group">
 							<span class="input-group-btn">
-								<button class="btn btn-default" type="button">其他</button> </span> <input
-								type="text" class="form-control" placeholder="元">
+								<button class="btn btn-default" type="button">其他</button> 
+						    </span> 
+								<input style="width:100px" id="qt" type="text" class="form-control"  placeholder="元">
 						</div>
 					</div>
 				</div>
 				<!-- /input-group -->
 				<div id="money_submit">
 					<input id="submit_input1" type="submit" value="我要捐款" />&nbsp;&nbsp;&nbsp;
-					<input id="submit_input2" type="submit" value="微信捐款" />&nbsp;&nbsp;&nbsp;
-
 					
-						<span class="yi_sp1">捐款次数：</span>
-						 <span class="yi_sp2"id="project_donateNum">${don_id}</span>
+						<%-- <c:forEach items="" var=""> --%>
+							<span class="yi_sp1">捐款次数：</span>
+						<%-- </c:forEach> --%>
+						
+						<span class="yi_sp2"id="project_donateNum">${don_id}</span>
 					    <span class="yi_sp1">次</span>
 					
 				</div>
-
+			
 
 			</div>
 
 		</div>
 
 	</div>
-
-
+	<script type="text/javascript">
+		
+		/* if($("#qt")!=null){
+			$("input[type='text'][name='a']").val($("#qt").val());
+		}else{ }*/
+			$("input[type='button'][name='money']").click(function(){
+				/* alert($("input[type='text'][name='a']").val()); */
+				$("input[type='text'][name='a']").val($(this).val());
+				/* alert($("input[type='text'][name='a']").val()); */
+			}); 
+		
+		
+		
+		
+			 
+		
+	</script>
+	<%-- <script type="text/javascript">
+		<div class=" ">
+		<p class="">项目状态:<%if(_vo.status==1){%>募款中<%}else if(_vo.status==2){%>执行中<%}else if(_vo.status==3){%>已结束<%}%></p>
+		<p class="">已筹：<span><%=_vo.donate.obtainMoney||0%></span>元&nbsp;&nbsp;<span><%=_vo.donate.donateNum||0%></span>人捐款</p>
+		<%if(_vo.donate.needMoney > 0){
+			var _par = parseInt((_vo.donate.obtainMoney/(_vo.donate.needMoney/100))*100);%>
+		<div class="">
+			<div class="">
+				<p class=""><span style="width:<%=_par%>%" class="istrue"></span></p>
+			</div>
+			<div class=""><%=_par%>%</div>
+		</div>
+		<%}%>
+		<%if(_vo.status == 1 && _vo.hide_donate != 1){%>
+		<div class="">
+			<a class="" href="" pName="<%=_vo.title%>" pid="<%=_vo.id%>" fid="<%=_vo.fundID%>" onclick="toDonate(this);">我要捐款</a>
+		</div>
+		<%}%>
+	</div>
+		
+	
+	
+	</script> --%>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>

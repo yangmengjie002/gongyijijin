@@ -3,7 +3,7 @@ package com.entity;
 public class DonTable {
 	private Integer don_id;
 	private double user_money;
-	private Integer don_exam_pro_id;
+	private Integer board_exam_pro_id;
 	private double user_oldmoney;
 	private Integer user_id;
 	private String time;
@@ -19,11 +19,11 @@ public class DonTable {
 	public void setUser_money(double user_money) {
 		this.user_money = user_money;
 	}
-	public Integer getDon_exam_pro_id() {
-		return don_exam_pro_id;
+	public Integer getBoard_exam_pro_id() {
+		return board_exam_pro_id;
 	}
-	public void setDon_exam_pro_id(Integer don_exam_pro_id) {
-		this.don_exam_pro_id = don_exam_pro_id;
+	public void setBoard_exam_pro_id(Integer board_exam_pro_id) {
+		this.board_exam_pro_id = board_exam_pro_id;
 	}
 	public double getUser_oldmoney() {
 		return user_oldmoney;
@@ -43,4 +43,6 @@ public class DonTable {
 	public void setTime(String time) {
 		this.time = time;
 	}
+	
+	
 }
