@@ -79,4 +79,14 @@
 			<result name="success">/right.jsp</result>
 		</action>
 	</package>
+	
+	<!-- shidongfang -->
+	<package name="sdf" extends="struts-default" namespace="">
+		<action name="user_*" class="com.shidongfang.action.DonTableAction" method="{1}">
+			 <result name="list" >/pro_list.jsp</result>
+			<!-- 重定向到某个Action -->
+			<result name="to_select" type="redirectAction">user_select.action</result>
+		</action>
+	
+	</package>
 </struts>    
