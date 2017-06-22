@@ -53,20 +53,16 @@ public class EmpAction extends BaseAction{
 				this.getSession().setAttribute("name", em.getEmp_user());
 				this.getSession().setAttribute("pwd", em.getEmp_pwd());
 				RoleDao rd = new RoleDaoImpl();
-				List<RoleEntity> re = rd.selectRoleById(emp.getEmp_id());
+				RoleEntity re = rd.selectRoleById(emp.getEmp_id());
 				FunctionDao fd = new FunctionDaoImpl();
 				ArrayList list = new ArrayList(); 
-				for(int i=0;i<re.size();i++){
-					List<FunctionEntity> funList = fd.selectFunctionByRoleName(re.get(i).getRoleName());
-					list.add(funList);
-				}
-				
+				List<FunctionEntity> funList = fd.selectFunctionByRoleName(re.getRoleName());	
 				List<FunctionEntity> allList = fd.selectAllFunction();
-				this.getSession().setAttribute("funList", list);
+				this.getSession().setAttribute("funList", funList);
 				this.getSession().setAttribute("allList", allList);
-				
 				return SUCCESS;
 			}else{
+				System.out.println("未登录");
 				this.getRequest().setAttribute("msg", "用户名密码错误或用户不存在");
 				return "entryBack_error";
 			}
@@ -104,13 +100,13 @@ public class EmpAction extends BaseAction{
 	 * @return
 	 */
 	public String selectEmp(){
-		
+
 		EmployeeBean eb = es.selectEmployee(pageSize,currentPage,emp_id,emp_hire_date,emp_user,emp_status_id);
 		System.out.println(eb);
 		this.getRequest().setAttribute("eb", eb);
 		return "addEmp";
 	}
-	
+
 	public String selectEmp1(){	
 		EmployeeBean eb = es.selectEmployee(pageSize,currentPage,emp_id,emp_hire_date,emp_user,emp_status_id);
 		String s = JSONObject.fromObject(eb).toString();
@@ -124,7 +120,7 @@ public class EmpAction extends BaseAction{
 		System.out.println(s);
 		return null;
 	}
-	
+
 	public EmpService getEs() {
 		return es;
 	}
@@ -176,7 +172,7 @@ public class EmpAction extends BaseAction{
 	public void setCurrentPage(Integer currentPage) {
 		this.currentPage = currentPage;
 	}
-	
+
 
 	private String oldPassword;
 	private String newPassword1;
@@ -187,26 +183,31 @@ public class EmpAction extends BaseAction{
 	 */
 	public String motifyEmPwd(){
 		System.out.println(newPassword1);
-		if(!newPassword1.equals(newPassword2)){
-			this.getRequest().setAttribute("msg1", "两次密码不一致");
+		if(newPassword1==null){
+			this.getRequest().setAttribute("msg1", "不能为空");
 			return "motifyEmPwd";
 		}else{
-			String pwd = (String) this.getSession().getAttribute("pwd");
-			if(!pwd.equals(oldPassword)){
-				this.getRequest().setAttribute("msg2", "原密码错误");
-				return "motifyEmPwd";
-			}
-			System.out.println(oldPassword);
-			String name = (String) this.getSession().getAttribute("name");
-			int flag = es.motifyEmpByName(name,newPassword1);
-			if(flag>0){
-				this.getRequest().setAttribute("msg3", "修改成功，调到主页<a href='admin/employee/changeEmployee.jsp'>返回</a>");
-				this.getSession().setAttribute("pwd", newPassword1);
-				System.out.println(this.getSession().getAttribute("pwd"));
+			if(!newPassword1.equals(newPassword2)){
+				this.getRequest().setAttribute("msg1", "两次密码不一致");
 				return "motifyEmPwd";
 			}else{
-				this.getRequest().setAttribute("msg3", "插入错误");
-				return "motifyEmPwd";
+				String pwd = (String) this.getSession().getAttribute("pwd");
+				if(!pwd.equals(oldPassword)){
+					this.getRequest().setAttribute("msg2", "原密码错误");
+					return "motifyEmPwd";
+				}
+				System.out.println(oldPassword);
+				String name = (String) this.getSession().getAttribute("name");
+				int flag = es.motifyEmpByName(name,newPassword1);
+				if(flag>0){
+					this.getRequest().setAttribute("msg3", "修改成功，调到主页<a href='admin/employee/changeEmployee.jsp'>返回</a>");
+					this.getSession().setAttribute("pwd", newPassword1);
+					System.out.println(this.getSession().getAttribute("pwd"));
+					return "motifyEmPwd";
+				}else{
+					this.getRequest().setAttribute("msg3", "插入错误");
+					return "motifyEmPwd";
+				}
 			}
 		}
 	}
@@ -234,20 +235,25 @@ public class EmpAction extends BaseAction{
 	public void setNewPassword2(String newPassword2) {
 		this.newPassword2 = newPassword2;
 	}
-	
-	public void motifyEmp(){
-		
+	/**
+	 * 删除用户。
+	 * @return
+	 */
+	public String deleteEmp(){
+		int id = Integer.parseInt(this.getRequest().getParameter("id"));
+		int flag = es.deleteEmpById(id);
+		return "addEmp";
 	}
-	
+
 	/**
 	 * 退出后台系统。
 	 * @return
 	 */
 	public String empDistory(){
 		this.getSession().invalidate();
-		return "entryBack_error";
+		return "entryBack1";
 	}
-	
+
 
 
 }

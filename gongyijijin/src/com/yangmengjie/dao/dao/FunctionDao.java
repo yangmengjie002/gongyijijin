@@ -36,4 +36,34 @@ public interface FunctionDao {
 	 * @return
 	 */
 	public List<FunctionEntity> selectAllFunction();
+	/**
+	 * 根据角色ID删除角色权限。
+	 * @param roleid
+	 * @return
+	 */
+	public int deleteFunById(int roleid);
+	
+	/**
+	 * 根据角色ID插入角色权限。
+	 * @param id
+	 * @param params
+	 * @return
+	 */
+	public int addFunById(int id,int[]params);
+	/**
+	 * 根据角色ID查找其权限；
+	 * @return
+	 */
+	public List<FunctionEntity> selectFunById(int roleid);
+	/**
+	 * 插入新权限。
+	 * @return
+	 */
+	public int insertFun(String functionName,String url);
+	/**
+	 * 根据ID删除权限。
+	 * @param id
+	 * @return
+	 */
+	public int deleteFun(int id);
 }

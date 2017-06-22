@@ -59,4 +59,10 @@ public interface EmpDao {
 	 * @return
 	 */
 	public int updateStatu(int emp_id,int statusid);
+	/**
+	 * 删除用户。
+	 * @param emp_id
+	 * @return
+	 */
+	public int deleteEmpById(int emp_id);
 }

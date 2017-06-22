@@ -179,7 +179,7 @@ packground-repeat:no-repeat;
 				<div class="col-md-4">
 					<img src="323.png" />
 				</div>
-				<div id="money" class="col-md-6">${user_oldmoney}元</div>
+				<div id="money" class="col-md-6">${dp2.user_oldmoney}元</div>
 			</div>
 			<div id="time">
 				<div id="time_one">&nbsp;时间</div>
@@ -222,29 +222,7 @@ packground-repeat:no-repeat;
 		</div>
 
 	</div>
-	<%-- <script type="text/javascript">
-		<div class=" ">
-		<p class="">项目状态:<%if(_vo.status==1){%>募款中<%}else if(_vo.status==2){%>执行中<%}else if(_vo.status==3){%>已结束<%}%></p>
-		<p class="">已筹：<span><%=_vo.donate.obtainMoney||0%></span>元&nbsp;&nbsp;<span><%=_vo.donate.donateNum||0%></span>人捐款</p>
-		<%if(_vo.donate.needMoney > 0){
-			var _par = parseInt((_vo.donate.obtainMoney/(_vo.donate.needMoney/100))*100);%>
-		<div class="">
-			<div class="">
-				<p class=""><span style="width:<%=_par%>%" class="istrue"></span></p>
-			</div>
-			<div class=""><%=_par%>%</div>
-		</div>
-		<%}%>
-		<%if(_vo.status == 1 && _vo.hide_donate != 1){%>
-		<div class="">
-			<a class="" href="" pName="<%=_vo.title%>" pid="<%=_vo.id%>" fid="<%=_vo.fundID%>" onclick="toDonate(this);">我要捐款</a>
-		</div>
-		<%}%>
-	</div>
-		
-	
-	
-	</script> --%>
+
 
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

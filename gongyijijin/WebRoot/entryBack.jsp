@@ -130,7 +130,7 @@
 	width: 600px;
 	height: 30px;
 	position: absolute;
-	left: 40%;
+	left: 20%;
 	top: 70%;
 	text-align: center;
 	padding-bottom: 10px;
@@ -185,9 +185,9 @@
 
 		<div id="d11" class="col-md-3">
 			<div id="d111">用户登录</div>
-			<div id="d113"></div>
+			<div id="d113">${msg}</div>
 			<div id="d112">
-				<div id="d1111">${msg}
+				<div id="d1111">
 					<div id="mi"></div>
 					<div id="mi1">
 						<input type="text" name="em.emp_user" style="width:191px;height:40px;"

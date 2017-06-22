@@ -391,14 +391,15 @@ a:hover {
 <body>
 	<div class="container">
 		<section id="content">
-		<form action="">
+		<form action="qian_findlogin.action" method="post">
 			<h1>登录界面</h1>
 			<div>
-				<input type="text" placeholder="账号" required="" id="username" />
+				<input type="text" name="reg.user_name" placeholder="账号" required="" id="username" />
 			</div>
 			<div>
-				<input type="password" placeholder="密码" required=""
-					id="password" />
+				<input type="password"name="reg.user_pass" placeholder="密码" required=""
+					id="password" /><br/>
+					${msg}
 			</div>
 			<div>
 				<input type="submit" value="登录" /> <a href="#">忘记密码</a> <a href="register.jsp">注册</a>

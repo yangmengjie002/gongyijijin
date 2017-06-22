@@ -36,21 +36,21 @@ public class RoleDaoImpl implements RoleDao {
 	}
 
 	@Override
-	public List<RoleEntity> selectRoleById(int emp_id) {
+	public RoleEntity selectRoleById(int emp_id) {
 		String sql = "select r.* from role r,employee_role er,employee_information ei where r.id = er.roleid and er.emp_id = ei.emp_id and ei.emp_id=?";
 		Object[] params = {emp_id};
 
 		Connection con = cp.getConnection();
-		List<RoleEntity> empList = new ArrayList<RoleEntity>();
+		RoleEntity re=null;
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			BaseDao.setParams(ps, params);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
-				RoleEntity re = new RoleEntity();
+				re = new RoleEntity();
 				re.setId(rs.getInt(1));
 				re.setRoleName(rs.getString(2));
-				empList.add(re);
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -59,7 +59,7 @@ public class RoleDaoImpl implements RoleDao {
 			cp.close(con);
 		}
 
-			return empList;
+			return re;
 		}
 
 		
@@ -81,14 +81,54 @@ public class RoleDaoImpl implements RoleDao {
 		@Override
 		public int addRole(int id, int roleid) {
 			String sql = "insert into employee_role values(?,?)";
+			Object[]params = {id,roleid};
+			int flag = -1;
+			try {
+				flag = BaseDao.executeUpdate(sql, params);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return flag;
+		}
+
+		@Override
+		public int addRole1(String roleName) {
+			String sql="insert into role values(?)";
+			Object[] params = {roleName};
+			int flag = -1;
+			try {
+				flag = BaseDao.executeUpdate(sql, params);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return flag;
+		}
+
+		@Override
+		public int deleteRole(int roleid) {
+			String sql = "delete from role where id=? and id not in (select roleid from employee_role)";
 			QueryRunner qr = new QueryRunner(ConnPool.getBds());
 			int flag = -1;
 			try {
-				flag = qr.update(sql, id,roleid);
+				flag = qr.update(sql, roleid);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 			return flag;
+		}
+
+		@Override
+		public RoleEntity selectRoleByRoleid(int roleid) {
+			QueryRunner qr = new QueryRunner(ConnPool.getBds());
+			String sql = "select * from role where id="+roleid;
+			try {
+				RoleEntity roleEntity = qr.query(sql, new BeanHandler<RoleEntity>(RoleEntity.class));
+				return roleEntity;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
 		}
 
 	}

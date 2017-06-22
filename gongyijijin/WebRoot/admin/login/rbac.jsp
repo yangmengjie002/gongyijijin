@@ -16,7 +16,12 @@
 	href="${pageContext.request.contextPath}/admin/css/bootstrap.min.css"
 	rel="stylesheet" media="screen">
 	
-	
+	<script type="text/javascript">
+		window.onload = function(){
+			$("#status").val(${ey.emp_status_id});
+			$("#role").val(${roleList.id});
+		}
+	</script>
 </head>
 
 
@@ -47,7 +52,7 @@
 					<c:if test="${ey.emp_status_id==2 }">
 						离职
 					</c:if> 
-					<select name="statuSelect">
+					<select name="statuSelect" id="status">
 						<option value="1">在职</option>
 						<option value="2">离职</option>
 					</select>
@@ -55,10 +60,9 @@
 			</tr>
 			<tr>
 				<td>用户角色</td>
-				<td><c:forEach items="${roleList}" var="rolel">
-						${rolel.roleName }
-					</c:forEach>
-					<select name="roleSelect">
+				<td>
+						${roleList.roleName }
+					<select name="roleSelect" id="role">
 						<c:forEach items="${roList}" var="rolis">
 							<option value="${rolis.id}">${rolis.roleName}</option>
 						</c:forEach>
@@ -67,8 +71,9 @@
 			</tr>
 		</table>
 		<input type="submit" value="提交" class="btn btn-primary"/>
-		<input type="button" value="返回" class="btn btn-primary" onclick="javascript:history.go(-1)"/>
+		<input type="button" value="返回" class="btn btn-primary" onclick="javascript:history.go(-1)">
 	</form>	
+	
 	</div>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/admin/jquery/jquery-2.1.3.min.js">

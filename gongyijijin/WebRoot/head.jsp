@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -63,12 +64,21 @@ body {
 				<span id="logo"><img class="img-rounded"
 					src="image/2191854.png" width="120" height="60" />
 				</span>
-				 <span id="login">您好，请&nbsp&nbsp
+				
+				 <span id="login">
+				<c:if test="${regi==null}"> 
+				 您好，请&nbsp&nbsp
 					<a href="login.jsp"><button class="btn btn-default btn btn-success">登录</button></a>
-				</span>
-				<span>
+				
 				&nbsp;&nbsp;<a href="register.jsp">点击注册</a>
+				</c:if>
+				<c:if test="${regi!=null}">
+					<span style="font-size:15;">欢迎:${regi.user_name}</span>
+					&nbsp;&nbsp;
+					<a href="qian_deletelogin.action">退出登录</a>
+				</c:if>
 				</span>	
+				
 			</div>
 			<div class="col-md-1"></div>
 		</div>

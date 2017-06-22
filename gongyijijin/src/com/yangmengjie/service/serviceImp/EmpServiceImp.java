@@ -48,5 +48,10 @@ public class EmpServiceImp implements EmpService {
 		return ed.motifyEmpByName(name, newPassword1);
 	}
 
+	@Override
+	public int deleteEmpById(int emp_id) {
+		return ed.deleteEmpById(emp_id);
+	}
+
 	
 }

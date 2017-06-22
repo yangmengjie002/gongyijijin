@@ -25,7 +25,7 @@ body {
 <script type="text/javascript">
 	function deleteUser(id) {
 		if (confirm("确认删除吗？")) {
-			location.href="/gongyijijin/role_allRole.action?id="+id;
+			location.href="/gongyijijin/emp_deleteEmp.action0?id="+id;
 		}
 		
 	}
@@ -148,7 +148,6 @@ body {
 
 <body>
 	<h3>用户管理</h3>
-
 	<div class="col-xs-5">
 		<label for="basic-url">按用户ID搜</label>
 		<div class="input-group">
@@ -183,8 +182,9 @@ body {
 		</div>
 	</div>
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		<div class="col-xs-10"></div>
+		<div class="col-xs-9"></div>
 		<button type="submit" class="btn btn-primary btn" id="selectBtn">搜索</button>
+		<a href="role_roleConfig.action"><button type="submit" class="btn btn-primary btn" id="roleBtn">角色配置</button></a>
 		<button type="button" class="btn btn-primary btn" data-toggle="modal"
 			data-target="#myModal">添加用户</button>
 		<!-- 模态窗 -->

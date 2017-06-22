@@ -19,7 +19,7 @@ public interface RoleDao {
 	 * @param emp_id
 	 * @return
 	 */
-	public List<RoleEntity> selectRoleById(int emp_id);
+	public RoleEntity selectRoleById(int emp_id);
 	
 	/**
 	 * 根据员工id删除角色。
@@ -35,6 +35,22 @@ public interface RoleDao {
 	 * @return
 	 */
 	public int addRole(int id,int roleid);
-	
-	
+	/**
+	 * 向角色表中插入角色。
+	 * @param roleName
+	 * @return
+	 */
+	public int addRole1(String roleName);
+	/**
+	 * 根据角色ID删除角色。
+	 * @param roleid
+	 * @return
+	 */
+	public int deleteRole(int roleid);
+	/**
+	 * 根据角色ID查找角色。
+	 * @param roleid
+	 * @return
+	 */
+	public RoleEntity selectRoleByRoleid(int roleid);
 }

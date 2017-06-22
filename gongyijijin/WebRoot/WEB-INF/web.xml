@@ -15,6 +15,15 @@
   </filter-mapping>
   
   <filter>
+  	<filter-name>loginFilter</filter-name>
+  	<filter-class>com.filter.loginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>loginFilter</filter-name>
+  	<url-pattern>/admin/*</url-pattern>
+  </filter-mapping>
+  
+  <filter>
   	<filter-name>UserFilter</filter-name>
   	<filter-class>com.filter.UserFilter</filter-class>
   </filter>

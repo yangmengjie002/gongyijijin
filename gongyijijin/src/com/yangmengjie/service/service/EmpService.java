@@ -40,4 +40,10 @@ public interface EmpService {
 	 * @return
 	 */
 	public int motifyEmpByName(String name, String newPassword1);
+	/**
+	 * 删除用户。
+	 * @param emp_id
+	 * @return
+	 */
+	public int deleteEmpById(int emp_id);
 }

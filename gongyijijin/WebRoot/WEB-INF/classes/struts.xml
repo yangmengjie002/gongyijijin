@@ -16,19 +16,29 @@
 		<default-interceptor-ref name="emploginStack"></default-interceptor-ref>
 		<!-- 全局配置error到error.jsp页面 -->
 		<global-results>
-			<result name="error">/error.jsp</result>
+			<result name="error1">/error.jsp</result>
 		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="error1" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
 		<!-- 用户管理action -->
 		<action name="emp_*" class="com.yangmengjie.action.EmpAction" method="{1}">
 			<result name="success">/admin/login/home.jsp</result>
 			<result name="entryBack_error">/entryBack.jsp</result>
+			<result name="entryBack1" type="redirectAction">emp_login.action</result>
 			<result name="addEmp">/admin/employee/changeEmployee.jsp</result>
 			<result name="motifyEmPwd">/admin/employee/changePassword.jsp</result>
 		</action>
 		<!-- 角色管理action -->
 		<action name="role_*" class="com.yangmengjie.action.EmpRoleAction" method="{1}">
 			<result name="success">/admin/login/rbac.jsp</result>
-			<result name="motifyRole1">/admin/employee/changeEmployee.jsp</result>
+			<result name="motifyRole1" type="redirect">/entryBack.jsp</result>
+			<result name="motifyRole2" type="redirectAction">role_roleConfig.action</result>
+			<result name="config">/admin/login/role.jsp</result>
+			<result name="motifyRole3">/admin/login/function.jsp</result>
+			<result name="addFun">/admin/employee/changeEmployee.jsp</result>
+			<result name="deletFun">/admin/login/function.jsp</result>
+			
 		</action>
 	</package>
 	
@@ -46,14 +56,16 @@
 		</action>
 	</package>
 	
-	
-	<!-- shidongfang -->
-	<package name="sdf" extends="struts-default" namespace="">
-		<action name="user_*" class="com.shidongfang.action.DonTableAction" method="{1}">
-			<result name="list" >/pro_list.jsp</result>
-			<!-- 重定向到某个Action -->
-			<result name="to_select" type="redirectAction">user_select.action</result>
-		</action>
-	
+	<!-- jingbinbin -->
+	<package name="jing" extends="struts-default">
+	  <action name="register_*" class="com.jingbinbinzhu.zhuce.RegisterAction" method="{1}">
+	      <result name="error">/error1.jsp</result>
+	      <result name="success">/login.jsp</result>
+	  </action>
+	  
+	  <action name="qian_*" class="com.jingbinbinzhu.deng.qianloginAction" method="{1}">
+	     <result name="qianlogin">/home.jsp</result>
+	     <result name="dengcuo">/login.jsp</result>
+	  </action>
 	</package>
 </struts>    
