@@ -8,18 +8,34 @@ package com.yuxiaofei.pro_apply.entity;
 public class SecondCheck {
 	private Integer moneyId;//该次审核id
 	private Integer empId;//二次审核员工编号
-	private Integer statusId;//审核状态id
+	private Integer statusId;//审核意见
+	private String applyReason;//申请原因
+	private double money;//申请的钱数
 	private String moneyInfo;//审查信息
 	private String proName;//项目名称
 	private Integer proId;//项目id
 	private Integer proExeId;//一次审核id;
+	private String firstCheckEmp;//第一次审查人
+	public String getApplyReason() {
+		return applyReason;
+	}
+	public void setApplyReason(String applyReason) {
+		this.applyReason = applyReason;
+	}
+	public double getMoney() {
+		return money;
+	}
+	public void setMoney(double money) {
+		this.money = money;
+	}
+	
 	public Integer getProExeId() {
 		return proExeId;
 	}
 	public void setProExeId(Integer proExeId) {
 		this.proExeId = proExeId;
 	}
-	private String firstCheckEmp;//第一次审查人
+
 	public Integer getProId() {
 		return proId;
 	}

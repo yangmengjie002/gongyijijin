@@ -1,17 +1,40 @@
 package com.yuxiaofei.pro_apply.action;
 
-import java.util.List;
-import java.util.Map;
+import java.io.PrintWriter;
 
-import com.opensymphony.xwork2.ActionContext;
+import net.sf.json.JSONObject;
+
 import com.opensymphony.xwork2.ModelDriven;
 import com.util.BaseAction;
-import com.yuxiaofei.pro_apply.dao.dao.FirstCheckMoney;
-import com.yuxiaofei.pro_apply.dao.daoImpl.FCMDImpl;
+import com.yuxiaofei.pro_apply.dao.getCount;
+
+import com.yuxiaofei.pro_apply.dao.daoImpl.FDaoImpl;
+import com.yuxiaofei.pro_apply.dao1.FDao;
+import com.yuxiaofei.pro_apply.dao1.MoneyExamBean;
 import com.yuxiaofei.pro_apply.entity.FirstCheck;
 
 public class FirstCheckAction extends BaseAction implements ModelDriven<FirstCheck>{
+	private Integer pageSize;
+	private Integer currentPage;
+	public Integer getPageSize() {
+		return pageSize;
+	}
+	public void setPageSize(Integer pageSize) {
+		this.pageSize = pageSize;
+	}
+	public Integer getCurrentPage() {
+		return currentPage;
+	}
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
+	}
 
+	public FDao getFc() {
+		return fc;
+	}
+	public void setFc(FDao fc) {
+		this.fc = fc;
+	}
 	@Override
 	public FirstCheck getModel() {
 		// TODO Auto-generated method stub
@@ -24,33 +47,52 @@ public class FirstCheckAction extends BaseAction implements ModelDriven<FirstChe
 	public void setPt(FirstCheck pt) {
 		this.pt = pt;
 	}
-	FirstCheckMoney fc=new FCMDImpl();
-	public String select(){
-		
+	FDao fc=new FDaoImpl();
+	public String select(){//分页以及显示分页
 		System.out.println(pt.getUserName());
 		System.out.println(pt.getMoney());
 		System.out.println(pt.getProName());
-		if(pt.getUserName()!=null){
-			List <Map<String,Object>> findFirstUser=fc.findUserByUsername(pt.getUserName());
-				Map map=(Map) ActionContext.getContext().get("userName");
-				map.put("find",findFirstUser);
-				
-				return null;
-				
-		}else if(pt.getMoney()>0){
-			List <Map<String,Object>> findFirstMoney=fc.findChekcNum(pt.getMoney());
-			Map map=(Map) ActionContext.getContext().get("money");
-			map.put("find",findFirstMoney);
-			return null;
-		}else if(pt.getProName()!=null){
-			List <Map<String,Object>> findFirstName=fc.findMoneyApplyName(pt.getProName());
+		getCount gt=new getCount();
+		MoneyExamBean bean=gt.selectMoneyCheck(pageSize, currentPage, pt.getCheckId(),
+				pt.getProName(), pt.getUserName(), pt.getMoney(),
+				pt.getReason() ,
+				pt.getCheckStatusId()
+				);
+		String s = JSONObject.fromObject(bean).toString();
+		System.out.println(bean.getList1().get(0).getReason());	
+		try{
 		
-			Map map=(Map) ActionContext.getContext().get("proName");
-			map.put("find",findFirstName);
-			return null;
+			PrintWriter out = this.getResponse().getWriter();
+			
+			out.print(s);
+			
+		}catch(Exception e){
+			System.out.println(e.getMessage()+111);
 		}
+		return null;	
 		
-		return null;  
+		
+	}
+	public String update(){//修改审查状态为未通过
+		FDao fd=new FDaoImpl();
+		String checkId=getRequest().getParameter("consent");
+		
+		fd.update(Integer.parseInt(checkId),2,2);//第一个2是员工编号
+		
+		System.out.println(checkId);
+		return "re";
+	}
+	public String update2(){//修改审查状态为通过
+		FDao fd=new FDaoImpl();
+		String checkId=getRequest().getParameter("reject");
+		fd.update(Integer.parseInt(checkId),2,1);//第一个二是员工编号
+		System.out.println(checkId);
+		return "re";
+	}
+	public String getEmp(){//添加员工id
+		FDao fd=new FDaoImpl();
+		fd.addEmpId(1);
+		return "re";
 		
 	}
 	

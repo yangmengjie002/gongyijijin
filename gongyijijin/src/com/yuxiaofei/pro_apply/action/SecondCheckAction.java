@@ -1,62 +1,92 @@
 package com.yuxiaofei.pro_apply.action;
 
-import java.util.List;
-import java.util.Map;
+import java.io.PrintWriter;
 
-import com.opensymphony.xwork2.ActionContext;
+import net.sf.json.JSONObject;
+
 import com.opensymphony.xwork2.ModelDriven;
 import com.util.BaseAction;
-import com.yuxiaofei.pro_apply.dao.dao.SecondCheckDao;
-import com.yuxiaofei.pro_apply.dao.daoImpl.SCDImpl;
+import com.yuxiaofei.pro_apply.dao.GetSecondCount;
+import com.yuxiaofei.pro_apply.dao.daoImpl.FDaoImpl;
+import com.yuxiaofei.pro_apply.dao.daoImpl.SDaoImpl;
+import com.yuxiaofei.pro_apply.dao1.FDao;
+import com.yuxiaofei.pro_apply.dao1.MoneyExamBean;
+import com.yuxiaofei.pro_apply.dao1.SDao;
 import com.yuxiaofei.pro_apply.entity.SecondCheck;
 
+
+
 public class SecondCheckAction extends BaseAction implements ModelDriven<SecondCheck> {
+	private Integer pageSize;
+	private Integer currentPage;
+	public Integer getPageSize() {
+		return pageSize;
+	}
+	public void setPageSize(Integer pageSize) {
+		this.pageSize = pageSize;
+	}
+	public Integer getCurrentPage() {
+		return currentPage;
+	}
+	public void setCurrentPage(Integer currentPage) {
+		this.currentPage = currentPage;
+	}
+	
 	@Override
 	public SecondCheck getModel() {
 		// TODO Auto-generated method stub
 		return sc;
 	}
-	private SecondCheck  sc=new SecondCheck();
-	
+	private SecondCheck sc=new SecondCheck();
+	SDao sd=new SDaoImpl();
 	public SecondCheck getSc() {
 		return sc;
 	}
 	public void setSc(SecondCheck sc) {
 		this.sc = sc;
 	}
-	public String update(){
-    	
-		return null;
-	}
-	SecondCheckDao scd=new SCDImpl();
-	public String select(){
-		
-		System.out.println(sc.getFirstCheckEmp());
 
-		System.out.println(sc.getProName());
-	
-		System.out.println(sc.getProId());
-	  if(sc.getFirstCheckEmp()!=null){
-		  List <Map<String,Object>>  firstCheckEmp=scd.findCheckName(sc.getFirstCheckEmp());
-			Map map=(Map) ActionContext.getContext().get("firstCheckEmp");
-			map.put("check",firstCheckEmp);
-			return null;
-	  }else if(sc.getProName()!=null){ 
-		  List <Map<String,Object>>  proName=scd.findMondyApplyName(sc.getProName());
-			Map map=(Map) ActionContext.getContext().get("proName");
-			map.put("check",proName);
-			return null;
-	  }else if(sc.getProId()!=null){
-		  List <Map<String,Object>>  proId=scd.findChekcId(sc.getProId());
-			Map map=(Map) ActionContext.getContext().get("proId");
-			map.put("check",proId);
-			return null;
-	  }
-	  
+	public String select(){//分页以及显示分页
+		GetSecondCount gt=new GetSecondCount();
+		MoneyExamBean bean=gt.selectMoneyCheck(pageSize, currentPage, sc.getMoneyId(),
+				sc.getProName() , sc.getFirstCheckEmp(), sc.getApplyReason(), 
+				sc.getMoney(), sc.getStatusId());
+		String s = JSONObject.fromObject(bean).toString();
+		System.out.println(bean.getList2().get(0).getMoney());
+		System.out.println(bean.getList2().get(0).getProName());
+		try{
 		
-		
-		return null;
+			PrintWriter out = this.getResponse().getWriter();
+			
+			out.print(s);
+			
+		}catch(Exception e){
+			System.out.println(e.getMessage()+111);
+		}
+		return null;	
 		
 	}
+	public String update(){//修改审查状态为未通过
+		GetSecondCount gt=new GetSecondCount();
+		String money=getRequest().getParameter("consent");
+		
+		sd.update(Integer.parseInt(money),2,2);//第一个2是员工编号
+		
+		System.out.println(money);
+		return "ret";
+	}
+	public String update2(){//修改审查状态为通过
+		FDao fd=new FDaoImpl();
+		String money=getRequest().getParameter("reject");
+		
+		sd.update(Integer.parseInt(money),1,2);//第一个2是员工编号,第二个2是审核状态
+		
+		System.out.println(money);
+		return "ret";	
+	}
+		
+	
+		
+	
 	
 }
