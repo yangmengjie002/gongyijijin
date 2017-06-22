@@ -38,17 +38,16 @@
 			<result name="motifyRole3">/admin/login/function.jsp</result>
 			<result name="addFun">/admin/employee/changeEmployee.jsp</result>
 			<result name="deletFun">/admin/login/function.jsp</result>
-			
+			<result name="motifyEmPwd">/amin/employee/changePassword.jsp</result>
 		</action>
 	</package>
-	
 	
 	<package name="city_province" extends="struts-default">
 		<action name="get_*" class="com.yangmengjie.action.SelectCityAction" method="{1}"></action>
 	</package>
 	
 	<!-- yuxiaofei -->
-	<package name="yuxiaofei" extends="default">
+	<package name="yuxiaofei" extends="struts-default">
 		<action name="MoneyApply_*" class="com.yuxiaofei.pro_apply.action.ProApplyAction" method="{1}">
 			<result name="error">/error.jsp</result>
 			<result name="right">/right.jsp</result>
@@ -67,5 +66,17 @@
 	     <result name="qianlogin">/home.jsp</result>
 	     <result name="dengcuo">/login.jsp</result>
 	  </action>
+
+	<package name="second_check_money" extends="struts-default">
+		<action name="secondMoney_*" class="com.yuxiaofei.pro_apply.action.SecondCheckAction" method="{1}">
+			<result name="error">/error.jsp</result>
+			<result name="right">/right.jsp</result>
+		</action>
+	</package>
+	<package name="first_check_money" extends="struts-default">
+		<action name="firstCheck_*" class="com.yuxiaofei.pro_apply.action.FirstCheckAction" method="{1}">
+			<result name="error">/error.jsp</result>
+			<result name="success">/right.jsp</result>
+		</action>
 	</package>
 </struts>    

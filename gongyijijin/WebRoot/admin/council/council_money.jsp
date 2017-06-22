@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -60,117 +61,80 @@
 </head>
 
 <body>
-	<form action="">
+	<form action="secondMoney_select.action" method="post">
 		<div id="council">
 			<div class="container-fluid">
-				<div class="row">
+				
 					<div class="col-xs-5">
 						<div id="council_div">按项目名称查询</div>
 						<div class="input-group">
 							<span class="input-group-addon" id="basic-addon1">用户名:</span> <input
 								type="text" class="form-control" placeholder="Username"
-								aria-describedby="basic-addon1" id="council_username">
+								aria-describedby="basic-addon1" id="council_username" name="proName"/>
 						</div>
 					</div>
-					<div class="col-xs-5">
-						<div id="council_div">按项目日期查询</div>
-						<div class="input-group">
-							<span class="input-group-addon add-on" id="basic-addon1">开始日期<i
-								class="icon-th"></i> </span> <input type="text"
-								class="form-control date form_datetime"
-								aria-describedby="basic-addon1"> <span
-								class="input-group-addon add-on" id="basic-addon1">结束日期<i
-								class="icon-th"></i> </span> <input type="text"
-								class="form-control date form_datetime"
-								aria-describedby="basic-addon1">
-						</div>
-					</div>
-					<div class="col-xs-2"></div>
-				</div>
-
-				<div class="row">
 					<div class="col-xs-5">
 						<div id="council_div">按项目ID查询</div>
 						<div class="input-group">
 							<span class="input-group-addon" id="basic-addon1">ID:</span> <input
 								type="text" class="form-control" placeholder="Username"
-								aria-describedby="basic-addon1" id="council_username">
+								aria-describedby="basic-addon1" id="council_username" name="proId"/>
 						</div>
-					</div>
+					</div>		
 					<div class="col-xs-5">
-						<div id="council_div">按项目金额查询</div>
-						<div class="input-group">
-							<span class="input-group-addon" id="basic-addon3">最低</span> <input
-								type="text" class="form-control" id="basic-url"
-								aria-describedby="basic-addon3"> <span
-								class="input-group-addon" id="basic-addon3">最高</span> <input
-								type="text" class="form-control" id="basic-url"
-								aria-describedby="basic-addon3">
-						</div>
-					</div>
-					<div class="col-xs-2"></div>
-			</div>
-			
-			
-			
-			
-			<div class="row">
-					<div class="col-xs-5">
-						<div id="council_div">按项目负责人查询</div>
+						<div id="council_div">按一审负责人查询</div>
 						<div class="input-group">
 							<span class="input-group-addon" id="basic-addon1">负责人:</span> <input
 								type="text" class="form-control" placeholder="Username"
-								aria-describedby="basic-addon1" id="council_username">
+								aria-describedby="basic-addon1" id="council_username" name="firstCheckEmp"/>
 						</div>
 					</div>
+					<div class="col-xs-5"></div>.
+					<div></div>
+					
+				<div id="row">
 					<div class="col-xs-5">
-						<div id="council_div">按项目类型查询</div>
-						<div class="input-group">
-							<input id="checkbox1" type="checkbox" class="checkbox-primary">
-	                        <label for="checkbox1" id="council_check">
-	                            	大型项目
-	                        </label>
-	                        <span id="council_check_geren">
-		                        <input id="checkbox1" type="checkbox">
-		                        <label for="checkbox1" id="council_check">
-		                            	个人项目
-		                        </label>
-	                        </span>
-                        </div>
-					</div>
-					<div class="col-xs-2">
 						<input type="submit" class="btn btn-primary btn-lg" value="查询项目"/>
 					</div>
-				</div>			
-			
+				</div>
+								
 		</div>
-
-
-
-
-
-
-
-
 		<div id="council_row" class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
 			<table class="table">
 				<tr>	
 					<th>审核ID</th>
-					<th>项目负责人</th>
-					<th>项目简介</th>
-					<th>项目金额</th>
-					<th>批准时间</th>
-					<th>审核</th>
-					<th>备注</th>
+					<th>项目名称</th>
+					<th>一审负责人</th>	
+					<th>申请原因</th>
+					<th>审核意见</th><%--board_exam_money_info --%>
+					<th>审核</th><%--exam_status_id --%>
+					
 				</tr>
-				<tr>
+				<c:forEach items="${find}" var="aa" varStatus="ab">
+					<tr>
+					
+					
+						<td> ${aa.ab}</td>
+						<td>${aa.proName}</td>
+						<td>${aa.userName}</td>
+						<td>${aa.money}</td>
+						<td>${aa.reason}</td>
+						<td>
+							<button type="button" class="btn btn-success" data-toggle="modal"
+							data-target="#myModal2-2">同意</button> <!-- Modal -->
+							<button type="button" class="btn btn-danger" data-toggle="modal"
+							data-target="#myModal2-2">驳回</button>
+						</td>
+					</tr>
+				</c:forEach>
+				<!-- <tr>
 					<td>1</td>
 					<td>隔壁老王</td>
-					<td>关爱流浪小猫小狗 <!-- Button trigger modal -->
+					<td>关爱流浪小猫小狗 Button trigger modal
 						<button type="button" class="btn btn-link" data-toggle="modal"
 							data-target="#myModal1-1">
 							<span class="glyphicon glyphicon-info-sign"></span>
-						</button> <!-- Modal -->
+						</button> Modal
 						<div class="modal fade" id="myModal1-1" tabindex="-1"
 							role="dialog" aria-labelledby="myModalLabel">
 							<div class="modal-dialog" role="document">
@@ -188,13 +152,13 @@
 						</div>
 					</td>
 					<td>1000000</td>
-					<td>2017-6-12</td>
+					
 					<td>
-						<!-- Button trigger modal -->
+						Button trigger modal
 						<button type="button" class="btn btn-success" data-toggle="modal"
-							data-target="#myModal1-2">同意</button> <!-- Modal -->
+							data-target="#myModal1-2">同意</button> Modal
 						<button type="button" class="btn btn-danger" data-toggle="modal"
-							data-target="#myModal1-2">驳回</button> <!-- Modal -->
+							data-target="#myModal1-2">驳回</button> Modal
 						<div class="modal fade" id="myModal1-2" tabindex="-1"
 							role="dialog" aria-labelledby="myModalLabel">
 							<div class="modal-dialog" role="document">
@@ -218,42 +182,16 @@
 							</div>
 						</div>
 					</td>
-					<td>
-						<!-- Button trigger modal -->
-						<button type="button" class="btn btn-primary" data-toggle="modal"
-							data-target="#myModal1-3">备注</button> <!-- Modal -->
-						<div class="modal fade" id="myModal1-3" tabindex="-1"
-							role="dialog" aria-labelledby="myModalLabel">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-										<h4 class="modal-title" id="myModalLabel">请输入备注内容</h4>
-									</div>
-									<div class="modal-body">
-										<textarea cols="68" rows="20"></textarea>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal">关闭</button>
-										<button type="button" class="btn btn-primary">确认</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</td>
+					
 				</tr>
 				<tr>
 					<td>2</td>
 					<td>老司机杨孟杰</td>
-					<td>为爱自残，缺胳膊断腿 <!-- Button trigger modal -->
+					<td>为爱自残，缺胳膊断腿 Button trigger modal
 						<button type="button" class="btn btn-link" data-toggle="modal"
 							data-target="#myModal2-1">
 							<span class="glyphicon glyphicon-info-sign"></span>
-						</button> <!-- Modal -->
+						</button> Modal
 						<div class="modal fade" id="myModal2-1" tabindex="-1"
 							role="dialog" aria-labelledby="myModalLabel">
 							<div class="modal-dialog" role="document">
@@ -271,13 +209,13 @@
 						</div>
 					</td>
 					<td>100</td>
-					<td>2017-6-13</td>
+					
 					<td>
-						<!-- Button trigger modal -->
+						Button trigger modal
 						<button type="button" class="btn btn-success" data-toggle="modal"
-							data-target="#myModal2-2">同意</button> <!-- Modal -->
+							data-target="#myModal2-2">同意</button> Modal
 						<button type="button" class="btn btn-danger" data-toggle="modal"
-							data-target="#myModal2-2">驳回</button> <!-- Modal -->
+							data-target="#myModal2-2">驳回</button> Modal
 						<div class="modal fade" id="myModal2-2" tabindex="-1"
 							role="dialog" aria-labelledby="myModalLabel">
 							<div class="modal-dialog" role="document">
@@ -301,34 +239,8 @@
 							</div>
 						</div>
 					</td>
-					<td>
-						<!-- Button trigger modal -->
-						<button type="button" class="btn btn-primary" data-toggle="modal"
-							data-target="#myModal2-3">备注</button> <!-- Modal -->
-						<div class="modal fade" id="myModal2-3" tabindex="-1"
-							role="dialog" aria-labelledby="myModalLabel">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-										<h4 class="modal-title" id="myModalLabel">请输入备注内容</h4>
-									</div>
-									<div class="modal-body">
-										<textarea cols="68" rows="20"></textarea>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal">关闭</button>
-										<button type="button" class="btn btn-primary">确认</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</td>
-				</tr>
+					
+				</tr> -->
 			</table>
 		</div>
 
